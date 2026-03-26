@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Виртуальный музей ФГБОУ ВО «СГЮА»</title>
+
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<div id="home" class="home">
+    <h1>Виртуальный музей<br>ФГБОУ ВО «СГЮА»</h1>
+    <button class="start-btn" onclick="startTour()">Начать просмотр</button>
+</div>
+
+<button id="catalog-toggle" class="catalog-toggle hidden" type="button" onclick="toggleCatalog()">
+    <span>&#9776;</span>
+    <span>Экспонаты</span>
+</button>
+
+<button class="home-btn hidden" type="button" onclick="goHome()">Вернуться на главную</button>
+
+<aside id="catalog-panel" class="catalog-panel">
+    <h2>Каталог экспонатов</h2>
+    <p>Откройте список, чтобы быстро перейти к нужному экспонату.</p>
+    <input id="catalog-search" class="catalog-search" type="text" placeholder="Найти экспонат..." oninput="filterCatalog()">
+    <div id="catalog-list" class="catalog-list">
+        <div data-type="clock" onclick="goToArtifact('clock')">Часы ректора</div>
+        <div data-type="bust" onclick="goToArtifact('bust')">Бюст института</div>
+        <div data-type="phone" onclick="goToArtifact('phone')">Телефон-часы</div>
+        <div data-type="statue" onclick="goToArtifact('statue')">Родина-мать</div>
+		<div data-type="protivbak" onclick="goToArtifact('protivbak')">Немецкий противогазный бак</div>
+		<div data-type="flyaga" onclick="goToArtifact('flyaga')">Походная фляга</div>
+    </div>
+    <div id="catalog-empty" class="catalog-empty">По вашему запросу ничего не найдено.</div>
+</aside>
+
+<div id="catalog-overlay" class="catalog-overlay" onclick="closeCatalog()"></div>
+
+<div class="wrapper" id="wrapper">
+
+    <div class="scene scene-second">
+        <div class="path">
+            <span class="timeline-point left"></span>
+            <span class="timeline-point center"></span>
+            <span class="timeline-point right"></span>
+            <span class="timeline-date left">1930</span>
+            <span class="timeline-date center">1950</span>
+            <span class="timeline-date right">1980</span>
+        </div>
+
+        <div class="artifact left" data-type="clock">
+            <div class="info">Часы ректора</div>
+            <img src="assets/img/exhibits/clock.png" alt="Часы ректора">
+        </div>
+
+        <div class="artifact center" data-type="phone">
+            <div class="info">Телефон-часы</div>
+            <img src="assets/img/exhibits/phone.png" alt="Телефон-часы">
+        </div>
+
+        <div class="artifact right artifact-bust" data-type="bust">
+    <div class="info">Бюст института</div>
+    <img class="lift-small" src="assets/img/exhibits/bust.png" alt="Бюст института">
+		</div>
+    </div>
+
+    <div class="scene">
+        <div class="path">
+            <span class="timeline-point left"></span>
+            <span class="timeline-point center"></span>
+            <span class="timeline-point right"></span>
+            <span class="timeline-date left">1941-1960</span>
+            <span class="timeline-date center">1946</span>
+            <span class="timeline-date right">1975</span>
+        </div>
+
+		<div class="artifact left" data-type="flyaga">
+			<div class="info">Походная фляга</div>
+			<img src="assets/img/exhibits/flyaga.png" alt="Походная фляга">
+		</div>
+
+		<div class="artifact center" data-type="protivbak">
+			<div class="info">Немецкий противогазный бак</div>
+			<img src="assets/img/exhibits/protivbak.png" alt="Немецкий противогазный бак">
+		</div>
+
+         <div class="artifact right artifact-statue" data-type="statue">
+    		<div class="info">Родина-мать</div>
+   			 <img class="lift-small" src="assets/img/exhibits/statue.png" alt="Родина-мать">
+		</div>
+   	 </div>
+
+<button class="nav-btn" id="prev-room">&#8592;</button>
+<button class="nav-btn" id="next-room">&#8594;</button>
+
+<div id="modal" class="modal">
+    <div class="close" onclick="closeModal()">&#10005;</div>
+    <div class="modal-content">
+        <img id="modal-img" alt="Изображение экспоната">
+        <div class="modal-text">
+            <h2 id="modal-title"></h2>
+            <p id="modal-desc"></p>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/app.js" defer></script>
+
+</body>
+</html>
