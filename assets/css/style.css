@@ -1,4 +1,4 @@
-body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
+﻿body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
 .wrapper {
 	display:flex;
 	height:100vh;
@@ -14,14 +14,13 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     opacity:1;
 }
 
-/* сцены */
+/* СЃС†РµРЅС‹ */
 .scene {
     min-width:100vw;
     height:100vh;
     position:relative;
     flex-shrink:0;
     background-image:url('../img/scenes/newhall1.jpg');
-	background-image: url;
     background-size:100% auto;
     background-position:center;
     background-repeat:no-repeat;
@@ -45,7 +44,7 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     background:rgba(0,0,0,0.55);
 }
 
-/* маршрут */
+/* РјР°СЂС€СЂСѓС‚ */
 .path {
     --timeline-left:12%;
     --timeline-center:50%;
@@ -75,7 +74,7 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     transform:translateX(-140px);
 }
 
-/* точки */
+/* С‚РѕС‡РєРё */
 .path .timeline-point {
     position:absolute;
     top:-6px;
@@ -157,7 +156,7 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     }
 }
 
-/* экспонаты */
+/* СЌРєСЃРїРѕРЅР°С‚С‹ */
 .artifact {
     --artifact-lift:-135px;
     --info-gap:78px;
@@ -251,7 +250,7 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     100%{transform:translateY(var(--artifact-lift)) scale(1);}
 }
 
-/* название */
+/* РЅР°Р·РІР°РЅРёРµ */
 .artifact .info {
     position:absolute;
     top:0;
@@ -279,12 +278,12 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     --artifact-lift-small:-160px;
 }
 
-/* расположение */
+/* СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ */
 .left { left:11%; top:51%; }
 .center { left:51%; top:38%; }
 .right { left:68%; top:51%; }
 
-/* кнопки */
+/* РєРЅРѕРїРєРё */
 .nav-btn {
     position:fixed;
     top:50%;
@@ -307,7 +306,7 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
 #prev-room { left:20px; }
 #next-room { right:20px; }
 
-/* модалка */
+/* РјРѕРґР°Р»РєР° */
 .modal {
     display:none;
     position:fixed;
@@ -324,10 +323,18 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     color:white;
 }
 
-.modal img {
+.modal img,
+#modal-model {
     width:50%;
     border-radius:12px;
     box-shadow:0 20px 50px rgba(0,0,0,0.8);
+}
+
+#modal-model {
+    display:none;
+    height:min(70vh, 620px);
+    background:transparent;
+    --poster-color: transparent;
 }
 
 .modal-text {
@@ -349,7 +356,7 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     cursor:pointer;
 }
 
-/* главная */
+/* РіР»Р°РІРЅР°СЏ */
 .home {
     position:fixed;
     inset:0;
@@ -555,3 +562,7 @@ body { margin:0; font-family:"Segoe UI", Arial; overflow:hidden; }
     }
 
 }
+
+
+
+
