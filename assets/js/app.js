@@ -1,4 +1,4 @@
-const artifacts = document.querySelectorAll(".artifact");
+﻿const artifacts = document.querySelectorAll(".artifact");
 const catalogPanel = document.getElementById("catalog-panel");
 const catalogOverlay = document.getElementById("catalog-overlay");
 const catalogSearch = document.getElementById("catalog-search");
@@ -19,37 +19,61 @@ wrapper.addEventListener("scroll", checkVisibility);
 
 /* описания */
 const data = {
-clock: {
-title: "Настольные часы ректора",
-desc: "Эти часы находились в кабинете ректора, профессора Борисова В.В. Их ход сопровождал принятие ключевых решений, формировавших развитие Академии. Точный механизм и строгий дизайн отражают дух научной дисциплины и времени, в котором они служили."
-},
-bust: {
-title: "Бюст юридического института",
-desc: "Подарен в 1980-х годах в честь награждения института орденом «Знак Почета». Символизирует коллективный труд преподавателей и сотрудников. По преданию, прикосновение к бюсту перед экзаменом приносило студентам удачу."
-},
-phone: {
-title: "Телефон-часы",
-desc: "Редкий настольный прибор 1950-х годов, объединяющий телефон и часы. Принадлежал секретарю ученого совета и отражает атмосферу деловой жизни и технологий середины XX века."
-},
-statue: {
-title: "Скульптура «Родина-мать»",
-desc: "Типовой образ послевоенного периода, олицетворяющий победу и силу народа. Подарена институту выпуском 1975 года - фронтовиками, завершившими образование в мирное время."
-},
-protivbak: {
-title: "Немецкий противогазный бак",
-desc: "Металлический бак для хранения и переноски противогаза. Был привезен в институт в 1946 году выпускником-фронтовиком, как символ победы над врагом. Использовался на занятиях по гражданской обороне."
-},
-flyaga: {
-title: "Походная фляга",
-desc: "Походная фляга предназначалась для хранения воды в дороге и полевых условиях. Принадлежала студенту-ополченцу 1941 года, который ушёл на фронт с третьего курса и не вернулся. Передана в музей его одногруппниками в 1960-е годы."
-}
+    clock: {
+        title: "Настольные часы ректора",
+        desc: "Эти часы находились в кабинете ректора, профессора Борисова В.В. Их ход сопровождал принятие ключевых решений, формировавших развитие Академии. Точный механизм и строгий дизайн отражают дух научной дисциплины и времени, в котором они служили."
+    },
+    bust: {
+        title: "Бюст юридического института",
+        desc: "Подарен в 1980-х годах в честь награждения института орденом «Знак Почёта». Символизирует коллективный труд преподавателей и сотрудников. По преданию, прикосновение к бюсту перед экзаменом приносило студентам удачу."
+    },
+    phone: {
+        title: "Телефон-часы",
+        desc: "Редкий настольный прибор 1950-х годов, объединяющий телефон и часы. Принадлежал секретарю учёного совета и отражает атмосферу деловой жизни и технологий середины XX века."
+    },
+    statue: {
+        title: "Скульптура «Родина-мать»",
+        desc: "Типовой образ послевоенного периода, олицетворяющий победу и силу народа. Подарена институту выпуском 1975 года фронтовиками, завершившими образование в мирное время."
+    },
+    protivbak: {
+        title: "Немецкий противогазный бак",
+        desc: "Металлический бак для хранения и переноски противогаза. Был привезён в институт в 1946 году выпускником-фронтовиком как символ победы над врагом. Использовался на занятиях по гражданской обороне."
+    },
+    flyaga: {
+        title: "Походная фляга",
+        desc: "Походная фляга предназначалась для хранения воды в дороге и полевых условиях. Принадлежала студенту-ополченцу 1941 года, который ушёл на фронт с третьего курса и не вернулся. Передана в музей его одногруппниками в 1960-е годы."
+    }
 };
 
 /* клик */
 function openArtifactModal(type) {
-    document.getElementById("modal-img").src = "assets/img/exhibits/" + type + ".png";
-    document.getElementById("modal-title").innerText = data[type].title;
-    document.getElementById("modal-desc").innerText = data[type].desc;
+    const modalImage = document.getElementById("modal-img");
+    const modalModel = document.getElementById("modal-model");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-desc");
+    const modelSources = {
+        bust: "assets/models/bust.glb"
+    };
+    const isLocalFile = window.location.protocol === "file:";
+
+    modalImage.style.display = "block";
+    modalModel.style.display = "none";
+    modalModel.removeAttribute("src");
+    modalImage.src = "assets/img/exhibits/" + type + ".png";
+
+    if (modelSources[type] && !isLocalFile) {
+        modalImage.style.display = "none";
+        modalModel.style.display = "block";
+        modalModel.src = modelSources[type];
+    }
+
+    modalTitle.innerText = data[type].title;
+    modalDesc.innerText = data[type].desc;
+
+    if (modelSources[type] && isLocalFile) {
+        modalDesc.innerText += " 3D-модель откроется после запуска сайта через локальный сервер или хостинг, а не напрямую как file:// файл.";
+    }
+
     document.getElementById("modal").style.display = "block";
     homeButton.classList.add("hidden");
 }
@@ -62,10 +86,17 @@ artifacts.forEach(el => {
 });
 
 function closeModal() {
+    const modalImage = document.getElementById("modal-img");
+    const modalModel = document.getElementById("modal-model");
+
     document.getElementById("modal").style.display = "none";
-	if (document.getElementById("home").style.display === "none") {
-    homeButton.classList.remove("hidden");
-}
+    modalImage.style.display = "block";
+    modalModel.style.display = "none";
+    modalModel.removeAttribute("src");
+
+    if (document.getElementById("home").style.display === "none") {
+        homeButton.classList.remove("hidden");
+    }
 }
 
 function toggleCatalog() {
@@ -97,8 +128,8 @@ let currentIndex = 0;
 
 function preloadSceneBackgrounds() {
     const backgroundUrls = [
-        "assets/img/scenes/testfon.jpg",
-        "assets/img/scenes/hall2.jpg"
+        "assets/img/scenes/newhall1.jpg",
+        "assets/img/scenes/newhall3.jpg"
     ];
     let loadedCount = 0;
 
@@ -133,11 +164,13 @@ function updateActiveScene() {
 
 function showScene(index) {
     if (index < 0 || index >= scenes.length) return;
-	wrapper.scrollTo({
-		left: index * window.innerWidth,
-		behavior: "smooth"
-	});
-	currentIndex = index;
+
+    wrapper.scrollTo({
+        left: index * window.innerWidth,
+        behavior: "smooth"
+    });
+
+    currentIndex = index;
     updateActiveScene();
 }
 
@@ -151,15 +184,15 @@ preloadSceneBackgrounds();
 /* старт */
 function startTour() {
     document.getElementById("home").style.display = "none";
-	catalogToggle.classList.remove("hidden");
-	homeButton.classList.remove("hidden");
+    catalogToggle.classList.remove("hidden");
+    homeButton.classList.remove("hidden");
     closeCatalog();
 }
 
 function goHome() {
     document.getElementById("home").style.display = "flex";
-	catalogToggle.classList.add("hidden");
-	homeButton.classList.add("hidden");
+    catalogToggle.classList.add("hidden");
+    homeButton.classList.add("hidden");
     closeCatalog();
     closeModal();
     wrapper.scrollTo({ left: 0, behavior: "smooth" });
