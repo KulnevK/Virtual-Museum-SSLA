@@ -5,6 +5,7 @@
 <title>Виртуальный музей ФГБОУ ВО «СГЮА»</title>
 
 <link rel="stylesheet" href="assets/css/style.css">
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
 
 </head>
 
@@ -41,7 +42,7 @@
 
 <div class="wrapper" id="wrapper">
 
-    <div class="scene scene-second">
+    <div class="scene">
         <div class="path">
             <span class="timeline-point left"></span>
             <span class="timeline-point center"></span>
@@ -61,13 +62,13 @@
             <img src="assets/img/exhibits/phone.png" alt="Телефон-часы">
         </div>
 
-        <div class="artifact right artifact-bust" data-type="bust">
+       <div class="artifact right artifact-bust" data-type="bust">
     <div class="info">Бюст института</div>
     <img class="lift-small" src="assets/img/exhibits/bust.png" alt="Бюст института">
-		</div>
+</div>
     </div>
 
-    <div class="scene">
+    <div class="scene scene-second">
         <div class="path">
             <span class="timeline-point left"></span>
             <span class="timeline-point center"></span>
@@ -100,6 +101,7 @@
     <div class="close" onclick="closeModal()">&#10005;</div>
     <div class="modal-content">
         <img id="modal-img" alt="Изображение экспоната">
+        <model-viewer id="modal-model" alt="3D-модель экспоната" camera-controls auto-rotate shadow-intensity="1" exposure="1"></model-viewer>
         <div class="modal-text">
             <h2 id="modal-title"></h2>
             <p id="modal-desc"></p>
@@ -111,3 +113,5 @@
 
 </body>
 </html>
+
+
