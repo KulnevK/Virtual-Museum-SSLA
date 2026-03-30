@@ -59,6 +59,7 @@ function openArtifactModal(type) {
     modalImage.style.display = "block";
     modalModel.style.display = "none";
     modalModel.removeAttribute("src");
+    modalModel.setAttribute("poster", "assets/img/exhibits/" + type + ".png");
     modalImage.src = "assets/img/exhibits/" + type + ".png";
 
     if (modelSources[type] && !isLocalFile) {
