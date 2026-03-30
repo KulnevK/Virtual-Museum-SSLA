@@ -280,7 +280,7 @@
 
 /* СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ */
 .left { left:11%; top:51%; }
-.center { left:51%; top:38%; }
+.center { left:49%; top:38%; }
 .right { left:68%; top:51%; }
 
 /* РєРЅРѕРїРєРё */
@@ -332,8 +332,9 @@
 
 #modal-model {
     display:none;
+    min-height:320px;
     height:min(70vh, 620px);
-    background:transparent;
+    background:rgba(255,255,255,0.04);
     --poster-color: transparent;
 }
 
@@ -563,6 +564,401 @@
 
 }
 
+@media (max-width: 1024px) {
+    .scene {
+        background-size: cover;
+        background-position: center;
+    }
 
+    .path {
+        left: 8%;
+        width: 84%;
+        bottom: 82px;
+    }
 
+    .path .timeline-date {
+        font-size: 12px;
+        letter-spacing: 0.08em;
+    }
+}
 
+@media (max-width: 900px) {
+    body {
+        min-height: 100svh;
+    }
+
+    .wrapper,
+    .scene,
+    .home {
+        height: 100svh;
+    }
+
+    .home h1 {
+        max-width: 10ch;
+        padding: 0 20px;
+        font-size: clamp(30px, 7.5vw, 48px);
+        line-height: 1.12;
+    }
+
+    .start-btn {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .scene::before {
+        background: rgba(0,0,0,0.62);
+    }
+
+    .path {
+        --timeline-left: 9%;
+        --timeline-center: 50%;
+        --timeline-right: 91%;
+        bottom: 72px;
+        left: 7%;
+        width: 86%;
+    }
+
+    .path::after {
+        top: -8px;
+        width: 110px;
+        height: 22px;
+    }
+
+    .path .timeline-point {
+        width: 10px;
+        height: 10px;
+        top: -4px;
+    }
+
+    .path .timeline-date {
+        top: 18px;
+        font-size: 10px;
+        letter-spacing: 0.05em;
+    }
+
+    .artifact {
+        --artifact-lift: -116px;
+        --info-gap: 70px;
+        --artifact-size: clamp(104px, 23vw, 156px);
+        --pedestal-width: 100px;
+        --pedestal-height: 118px;
+        --shadow-width: 196px;
+        --shadow-height: 84px;
+    }
+
+    .artifact img {
+        width: var(--artifact-size);
+    }
+
+    .artifact.center {
+        --artifact-lift: -132px;
+        --info-gap: 76px;
+        --artifact-size: clamp(122px, 29vw, 184px);
+        --pedestal-width: 116px;
+        --pedestal-height: 134px;
+        --shadow-width: 216px;
+        --shadow-height: 96px;
+        margin-left: -78px;
+    }
+
+    .artifact-bust,
+    .artifact-statue {
+        left: 65%;
+        top: 55%;
+        --artifact-lift: -126px;
+        --artifact-lift-small: -126px;
+        --info-gap: 72px;
+    }
+
+    .artifact::before {
+        top: 74%;
+        width: var(--shadow-width);
+        height: var(--shadow-height);
+        filter: blur(18px);
+    }
+
+    .artifact::after {
+        bottom: -18px;
+        width: var(--pedestal-width);
+        height: var(--pedestal-height);
+    }
+
+    .artifact .info {
+        opacity: 1;
+        padding: 6px 9px;
+        font-size: 11px;
+        line-height: 1.3;
+        white-space: normal;
+        width: min(30vw, 140px);
+        text-align: center;
+    }
+
+    .left { left: 4%; top: 54%; }
+    .center { left: 48%; top: 39%; }
+    .right { left: 65%; top: 54%; }
+
+    .nav-btn {
+        top: auto;
+        bottom: max(18px, env(safe-area-inset-bottom));
+        transform: none;
+        width: 48px;
+        height: 48px;
+        font-size: 22px;
+        background: rgba(15,23,42,0.78);
+    }
+
+    #prev-room { left: 14px; }
+    #next-room { right: 14px; }
+
+    .catalog-toggle,
+    .home-btn {
+        top: max(14px, env(safe-area-inset-top));
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .catalog-toggle { left: 14px; }
+    .home-btn { right: 14px; }
+
+    .catalog-panel {
+        width: 100vw;
+        max-width: none;
+        padding: 78px 16px 20px;
+        gap: 14px;
+    }
+
+    .catalog-panel h2 {
+        font-size: 22px;
+    }
+
+    .catalog-search,
+    .catalog-list div {
+        font-size: 15px;
+    }
+
+    .modal {
+        overflow-y: auto;
+        padding: 72px 16px 28px;
+        box-sizing: border-box;
+    }
+
+    .modal-content {
+        width: min(100%, 560px);
+        margin: 0 auto;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .modal img,
+    #modal-model,
+    .modal-text {
+        width: 100%;
+    }
+
+    #modal-model {
+        min-height: 260px;
+        height: min(42svh, 360px);
+    }
+
+    .modal-text {
+        font-size: 16px;
+    }
+
+    .close {
+        top: max(16px, env(safe-area-inset-top));
+        right: 18px;
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 600px) {
+    .path {
+        --timeline-left: 8%;
+        --timeline-center: 50%;
+        --timeline-right: 92%;
+        bottom: 64px;
+        left: 6%;
+        width: 88%;
+    }
+
+    .path::after {
+        top: -7px;
+        width: 90px;
+        height: 20px;
+    }
+
+    .artifact {
+        --artifact-lift: -106px;
+        --info-gap: 62px;
+        --artifact-size: clamp(92px, 26vw, 132px);
+        --pedestal-width: 86px;
+        --pedestal-height: 102px;
+        --shadow-width: 164px;
+        --shadow-height: 72px;
+    }
+
+    .artifact.center {
+        --artifact-lift: -120px;
+        --info-gap: 68px;
+        --artifact-size: clamp(108px, 31vw, 156px);
+        --pedestal-width: 100px;
+        --pedestal-height: 116px;
+        --shadow-width: 182px;
+        --shadow-height: 80px;
+        margin-left: -60px;
+    }
+
+    .artifact-bust,
+    .artifact-statue {
+        --artifact-lift: -112px;
+        --artifact-lift-small: -112px;
+        --info-gap: 64px;
+    }
+
+    .artifact::before {
+        filter: blur(16px);
+    }
+
+    .artifact::after {
+        bottom: -14px;
+    }
+
+    .artifact .info {
+        width: min(32vw, 124px);
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .left { left: 2%; top: 52%; }
+    .center { left: 48%; top: 37%; }
+    .right { left: 66%; top: 52%; }
+
+    .path .timeline-date {
+        font-size: 10px;
+        letter-spacing: 0.04em;
+    }
+
+    .nav-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
+        bottom: max(12px, env(safe-area-inset-bottom));
+    }
+
+    .catalog-toggle span:last-child {
+        display: none;
+    }
+
+    .home-btn {
+        font-size: 13px;
+    }
+}
+
+@media (max-height: 540px) and (orientation: landscape) {
+    .path {
+        --timeline-left: 10%;
+        --timeline-center: 50%;
+        --timeline-right: 90%;
+        bottom: 26px;
+        left: 10%;
+        width: 80%;
+    }
+
+    .path::after {
+        width: 76px;
+        height: 16px;
+        top: -5px;
+    }
+
+    .path .timeline-point {
+        width: 8px;
+        height: 8px;
+        top: -2px;
+    }
+
+    .path .timeline-date {
+        top: 12px;
+        font-size: 9px;
+        letter-spacing: 0.03em;
+    }
+
+    .artifact {
+        --artifact-lift: -74px;
+        --info-gap: 42px;
+        --artifact-size: clamp(76px, 15vw, 110px);
+        --pedestal-width: 66px;
+        --pedestal-height: 78px;
+        --shadow-width: 134px;
+        --shadow-height: 58px;
+    }
+
+    .artifact.center {
+        --artifact-lift: -84px;
+        --info-gap: 46px;
+        --artifact-size: clamp(90px, 18vw, 126px);
+        --pedestal-width: 78px;
+        --pedestal-height: 90px;
+        --shadow-width: 148px;
+        --shadow-height: 64px;
+        margin-left: -50px;
+    }
+
+    .artifact-bust,
+    .artifact-statue {
+        left: 66%;
+        top: 56%;
+        --artifact-lift: -80px;
+        --artifact-lift-small: -80px;
+        --info-gap: 44px;
+    }
+
+    .artifact::before {
+        top: 76%;
+        filter: blur(14px);
+    }
+
+    .artifact::after {
+        bottom: -8px;
+    }
+
+    .artifact .info {
+        width: min(18vw, 100px);
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+
+    .left { left: 6%; top: 53%; }
+    .center { left: 48%; top: 38%; }
+    .right { left: 67%; top: 53%; }
+
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        bottom: 10px;
+    }
+
+    .modal {
+        padding: 56px 14px 20px;
+    }
+
+    .modal-content {
+        width: min(100%, 720px);
+        gap: 14px;
+    }
+
+    .modal-text {
+        font-size: 14px;
+    }
+
+    #modal-model {
+        min-height: 180px;
+        height: min(48vh, 240px);
+    }
+
+    .close {
+        top: 12px;
+        right: 14px;
+        font-size: 28px;
+    }
+}
