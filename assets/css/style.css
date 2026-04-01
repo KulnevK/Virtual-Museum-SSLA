@@ -3,8 +3,13 @@
     --font-display:"Cormorant Garamond", "Times New Roman", serif;
 }
 
+html {
+    background:#0f172a;
+}
+
 body {
     margin:0;
+    background:#0f172a;
     font-family:var(--font-ui);
     overflow:hidden;
 }
@@ -36,8 +41,9 @@ select {
     height:100vh;
     position:relative;
     flex-shrink:0;
+    background-color:#0f172a;
     background-image:url('../img/scenes/newhall1.jpg');
-    background-size:100% auto;
+    background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
 	scroll-snap-align:start;
@@ -62,9 +68,9 @@ select {
 
 /* РјР°СЂС€СЂСѓС‚ */
 .path {
-    --timeline-left:12%;
+    --timeline-left:15%;
     --timeline-center:50%;
-    --timeline-right:88%;
+    --timeline-right:86%;
     position:absolute;
     bottom:90px;
     left:10%;
@@ -401,7 +407,21 @@ select {
     display:none;
     min-height:320px;
     height:min(70vh, 620px);
-    background:rgba(255,255,255,0.04);
+    position:relative;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:18px;
+    background:
+        linear-gradient(125deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 12%, rgba(255,255,255,0) 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0) 18%, rgba(0,0,0,0.18) 100%),
+        radial-gradient(circle at 50% 34%, rgba(248,250,252,0.1), rgba(15,23,42,0.12) 34%, rgba(2,6,23,0.72) 62%, rgba(0,0,0,0.94) 100%),
+        linear-gradient(180deg, rgba(15,23,42,0.94), rgba(2,6,23,0.98));
+    box-shadow:
+        0 30px 60px rgba(0,0,0,0.5),
+        inset 0 0 0 1px rgba(255,255,255,0.05),
+        inset 0 18px 28px rgba(255,255,255,0.05),
+        inset 0 -28px 40px rgba(0,0,0,0.34);
+    backdrop-filter:blur(10px);
     --poster-color: transparent;
 }
 
@@ -497,12 +517,19 @@ select {
 }
 
 .start-btn {
-    padding:12px 30px;
-    font-size:18px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:48px;
+    padding:10px 22px;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
     color:#0f172a;
     border:none;
-    border-radius:8px;
-    background:white;
+    border-radius:999px;
+    background:rgba(255,255,255,0.96);
     cursor:pointer;
     margin-bottom:30px;
     opacity:0;
@@ -754,8 +781,10 @@ select {
     }
 
     .start-btn {
-        padding: 12px 24px;
-        font-size: 16px;
+        min-height:44px;
+        padding:10px 18px;
+        font-size:14px;
+        letter-spacing:0.03em;
     }
 
     .scene::before {
@@ -790,7 +819,7 @@ select {
     }
 
     .artifact {
-        --artifact-lift: -116px;
+        --artifact-lift: -102px;
         --info-gap: 70px;
         --artifact-size: clamp(104px, 23vw, 156px);
         --pedestal-width: 84px;
@@ -804,7 +833,7 @@ select {
     }
 
     .artifact.center {
-        --artifact-lift: -132px;
+        --artifact-lift: -118px;
         --info-gap: 76px;
         --artifact-size: clamp(122px, 29vw, 184px);
         --pedestal-width: 96px;
@@ -818,8 +847,8 @@ select {
     .artifact-statue {
         left: 65%;
         top: 55%;
-        --artifact-lift: -126px;
-        --artifact-lift-small: -126px;
+        --artifact-lift: -98px;
+        --artifact-lift-small: -98px;
         --info-gap: 72px;
     }
 
@@ -941,7 +970,7 @@ select {
     }
 
     .artifact {
-        --artifact-lift: -106px;
+        --artifact-lift: -92px;
         --info-gap: 62px;
         --artifact-size: clamp(92px, 26vw, 132px);
         --pedestal-width: 68px;
@@ -951,7 +980,7 @@ select {
     }
 
     .artifact.center {
-        --artifact-lift: -120px;
+        --artifact-lift: -106px;
         --info-gap: 68px;
         --artifact-size: clamp(108px, 31vw, 156px);
         --pedestal-width: 82px;
@@ -1036,7 +1065,7 @@ select {
     }
 
     .artifact {
-        --artifact-lift: -74px;
+        --artifact-lift: -62px;
         --info-gap: 42px;
         --artifact-size: clamp(76px, 15vw, 110px);
         --pedestal-width: 54px;
@@ -1046,7 +1075,7 @@ select {
     }
 
     .artifact.center {
-        --artifact-lift: -84px;
+        --artifact-lift: -70px;
         --info-gap: 46px;
         --artifact-size: clamp(90px, 18vw, 126px);
         --pedestal-width: 64px;
@@ -1060,8 +1089,8 @@ select {
     .artifact-statue {
         left: 66%;
         top: 56%;
-        --artifact-lift: -80px;
-        --artifact-lift-small: -80px;
+        --artifact-lift: -68px;
+        --artifact-lift-small: -68px;
         --info-gap: 44px;
     }
 
@@ -1147,8 +1176,8 @@ select {
 }
 
 .artifact.slot-center {
-    left: 49%;
-    top: 38%;
+    left: 50%;
+    top: 40%;
     --artifact-lift: -148px;
     --info-gap: 82px;
     margin-left: -170px;
@@ -1444,7 +1473,7 @@ select {
     .scene.mobile-focus-mode {
         --mobile-focus-size:clamp(148px, 40vw, 220px);
         --mobile-focus-top:42%;
-        --mobile-focus-lift:-146px;
+        --mobile-focus-lift:-124px;
         --mobile-focus-info-gap:88px;
         --mobile-focus-pedestal-width:108px;
         --mobile-focus-pedestal-height:124px;
@@ -1465,7 +1494,7 @@ select {
     .scene.mobile-focus-mode {
         --mobile-focus-size:clamp(138px, 46vw, 188px);
         --mobile-focus-top:43%;
-        --mobile-focus-lift:-128px;
+        --mobile-focus-lift:-108px;
         --mobile-focus-info-gap:80px;
         --mobile-focus-pedestal-width:94px;
         --mobile-focus-pedestal-height:108px;
@@ -1501,7 +1530,7 @@ select {
     .scene.mobile-focus-mode {
         --mobile-focus-size:clamp(112px, 22vw, 154px);
         --mobile-focus-top:47%;
-        --mobile-focus-lift:-98px;
+        --mobile-focus-lift:-80px;
         --mobile-focus-info-gap:60px;
         --mobile-focus-pedestal-width:80px;
         --mobile-focus-pedestal-height:94px;
@@ -1541,5 +1570,69 @@ select {
 
     .scene.mobile-focus-mode .path {
         bottom:24px;
+    }
+}
+
+
+@media (max-height: 760px) and (min-width: 901px) {
+    .path {
+        bottom: 32px;
+        left: 9%;
+        width: 82%;
+    }
+
+    .path .timeline-point {
+        top: -5px;
+        width: 12px;
+        height: 12px;
+    }
+
+    .path .timeline-date {
+        top: 18px;
+        font-size: 12px;
+        letter-spacing: 0.1em;
+    }
+
+    .artifact {
+        --artifact-lift: -136px;
+        --info-gap: 74px;
+        --artifact-size: clamp(120px, 17vw, 188px);
+    }
+
+    .artifact img,
+    .artifact model-viewer {
+        width: var(--artifact-size);
+    }
+
+    .artifact::before {
+        top: 60%;
+        width: 320px;
+        height: 136px;
+        filter: blur(22px);
+    }
+
+    .artifact::after {
+        bottom: -42px;
+        width: 170px;
+        height: 176px;
+    }
+
+    .artifact.slot-left {
+        top: 45%;
+    }
+
+    .artifact.slot-center {
+        top: 33%;
+        --artifact-lift: -152px;
+        --info-gap: 80px;
+        margin-left: -150px;
+    }
+
+    .artifact.slot-center img.lift-small {
+        --artifact-lift-small: -160px;
+    }
+
+    .artifact.slot-right {
+        top: 45%;
     }
 }
