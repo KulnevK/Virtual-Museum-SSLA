@@ -1,4 +1,120 @@
-﻿const museumData = window.MUSEUM_DATA || { scenes: [], exhibits: [] };
+﻿const timelineSlots = ["left", "center", "right"];
+const slotOrder = { left: 0, center: 1, right: 2 };
+const rawMuseumData = window.MUSEUM_DATA || { scenes: [], exhibits: [] };
+const defaultSceneBackground = "assets/img/scenes/newhall1.jpg";
+const defaultDescription = "Описание будет добавлено позже.";
+
+function normalizeMuseumData(rawData) {
+    const rawScenes = Array.isArray(rawData?.scenes) ? rawData.scenes : [];
+    const rawExhibits = Array.isArray(rawData?.exhibits) ? rawData.exhibits : [];
+    const sceneIds = new Set();
+    const exhibitIds = new Set();
+
+    const scenes = rawScenes.reduce((result, scene, index) => {
+        if (!scene || typeof scene !== "object") {
+            console.warn(`[museum] Пропущена некорректная сцена с индексом ${index}.`);
+            return result;
+        }
+
+        const id = String(scene.id || "").trim();
+        if (!id) {
+            console.warn(`[museum] Пропущена сцена без id на позиции ${index}.`);
+            return result;
+        }
+
+        if (sceneIds.has(id)) {
+            console.warn(`[museum] Найден дубликат scene.id: ${id}. Сцена пропущена.`);
+            return result;
+        }
+
+        sceneIds.add(id);
+
+        const timeline = Array.isArray(scene.timeline)
+            ? scene.timeline.slice(0, timelineSlots.length).map(value => String(value || ""))
+            : [];
+
+        while (timeline.length < timelineSlots.length) {
+            timeline.push("");
+        }
+
+        result.push({
+            ...scene,
+            id,
+            label: String(scene.label || `Период ${result.length + 1}`).trim(),
+            background: String(scene.background || defaultSceneBackground).trim() || defaultSceneBackground,
+            timeline,
+            note: scene.note ? String(scene.note).trim() : ""
+        });
+
+        return result;
+    }, []);
+
+    const validSceneIds = new Set(scenes.map(scene => scene.id));
+
+    const exhibits = rawExhibits.reduce((result, exhibit, index) => {
+        if (!exhibit || typeof exhibit !== "object") {
+            console.warn(`[museum] Пропущен некорректный экспонат с индексом ${index}.`);
+            return result;
+        }
+
+        const id = String(exhibit.id || "").trim();
+        if (!id) {
+            console.warn(`[museum] Пропущен экспонат без id на позиции ${index}.`);
+            return result;
+        }
+
+        if (exhibitIds.has(id)) {
+            console.warn(`[museum] Найден дубликат exhibit.id: ${id}. Экспонат пропущен.`);
+            return result;
+        }
+
+        const sceneId = String(exhibit.sceneId || "").trim();
+        if (!validSceneIds.has(sceneId)) {
+            console.warn(`[museum] Экспонат ${id} пропущен: неизвестный sceneId ${sceneId || "<empty>"}.`);
+            return result;
+        }
+
+        const image = String(exhibit.image || "").trim();
+        if (!image) {
+            console.warn(`[museum] Экспонат ${id} пропущен: не указан путь к изображению.`);
+            return result;
+        }
+
+        const slot = timelineSlots.includes(exhibit.slot) ? exhibit.slot : "center";
+        if (slot !== exhibit.slot) {
+            console.warn(`[museum] У экспоната ${id} указан неверный slot. Использован fallback: center.`);
+        }
+
+        exhibitIds.add(id);
+
+        const title = String(exhibit.title || exhibit.label || id).trim() || id;
+        const label = String(exhibit.label || title).trim() || title;
+
+        result.push({
+            ...exhibit,
+            id,
+            sceneId,
+            slot,
+            label,
+            title,
+            image,
+            poster: String(exhibit.poster || "").trim(),
+            model: String(exhibit.model || "").trim(),
+            artifactClass: String(exhibit.artifactClass || "").trim(),
+            imageClass: String(exhibit.imageClass || "").trim(),
+            searchTerms: Array.isArray(exhibit.searchTerms)
+                ? exhibit.searchTerms.filter(Boolean).map(value => String(value))
+                : [],
+            description: String(exhibit.description || defaultDescription).trim() || defaultDescription
+        });
+
+        return result;
+    }, []);
+
+    return { scenes, exhibits };
+}
+
+const museumData = normalizeMuseumData(rawMuseumData);
 const sceneMap = new Map(museumData.scenes.map(scene => [scene.id, scene]));
 const exhibitMap = new Map(museumData.exhibits.map(exhibit => [exhibit.id, exhibit]));
 
@@ -11,9 +127,6 @@ const wrapper = document.getElementById("wrapper");
 const catalogToggle = document.getElementById("catalog-toggle");
 const homeButton = document.querySelector(".home-btn");
 const mobileFocusMedia = window.matchMedia("(max-width: 900px), (max-height: 540px) and (orientation: landscape)");
-
-const timelineSlots = ["left", "center", "right"];
-const slotOrder = { left: 0, center: 1, right: 2 };
 
 let artifacts = [];
 let catalogItems = [];
@@ -141,7 +254,7 @@ function renderTimeline(scene) {
 }
 
 function renderMobileFocusPicker(scene, sceneExhibits) {
-    if (sceneExhibits.length < 2) {
+    if (!sceneExhibits.length) {
         return "";
     }
 
@@ -178,7 +291,7 @@ function renderArtifactCard(exhibit) {
     return `
         <div class="${escapeHtml(artifactClasses.join(" "))}" data-type="${escapeHtml(exhibit.id)}" data-scene-id="${escapeHtml(exhibit.sceneId)}">
             <div class="info">${escapeHtml(exhibit.label || exhibit.title)}</div>
-            <img${imageClassAttr} src="${escapeHtml(exhibit.image)}" alt="${escapeHtml(exhibit.title)}">
+            <img${imageClassAttr} src="${escapeHtml(exhibit.image)}" alt="${escapeHtml(exhibit.title)}" loading="lazy" decoding="async">
         </div>
     `;
 }
@@ -246,9 +359,9 @@ function applyResponsiveSceneMode() {
     scenes.forEach(scene => {
         const sceneId = scene.dataset.sceneId;
         const sceneExhibits = getSceneExhibits(sceneId);
-        const hasMultipleExhibits = sceneExhibits.length > 1;
+        const hasExhibits = sceneExhibits.length > 0;
         const activeType = mobileSceneSelections.get(sceneId) || getInitialSceneExhibit(sceneId);
-        const enableFocusMode = useMobileFocus && hasMultipleExhibits;
+        const enableFocusMode = useMobileFocus && hasExhibits;
 
         scene.classList.toggle("mobile-focus-mode", enableFocusMode);
 
@@ -311,7 +424,7 @@ function openArtifactModal(type) {
     }
 
     modalTitle.innerText = exhibit.title;
-    modalDesc.innerText = exhibit.description;
+    modalDesc.innerText = exhibit.description || defaultDescription;
 
     if (has3DModel && isLocalFile) {
         modalDesc.innerText += " 3D-модель откроется после запуска сайта через локальный сервер или хостинг, а не напрямую как file:// файл.";
@@ -474,3 +587,4 @@ document.addEventListener("keydown", event => {
         showScene(currentIndex - 1);
     }
 });
+

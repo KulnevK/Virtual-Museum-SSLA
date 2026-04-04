@@ -1474,7 +1474,7 @@ select {
         --mobile-focus-size:clamp(148px, 40vw, 220px);
         --mobile-focus-top:42%;
         --mobile-focus-lift:-124px;
-        --mobile-focus-info-gap:88px;
+        --mobile-focus-info-gap:50px;
         --mobile-focus-pedestal-width:108px;
         --mobile-focus-pedestal-height:124px;
         --mobile-focus-shadow-width:204px;
@@ -1634,5 +1634,13 @@ select {
 
     .artifact.slot-right {
         top: 45%;
+    }
+}
+
+/* Mobile only: hide top artifact labels */
+@media (max-width: 900px), (max-height: 540px) and (orientation: landscape) {
+    .artifact .info,
+    .scene.mobile-focus-mode .artifact.mobile-active .info {
+        display:none !important;
     }
 }
