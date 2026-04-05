@@ -35,7 +35,7 @@ select {
     opacity:1;
 }
 
-/* СЃС†РµРЅС‹ */
+/* Scenes */
 .scene {
     min-width:100vw;
     height:100vh;
@@ -66,7 +66,7 @@ select {
     background:rgba(0,0,0,0.55);
 }
 
-/* РјР°СЂС€СЂСѓС‚ */
+/* Timeline */
 .path {
     --timeline-left:15%;
     --timeline-center:50%;
@@ -96,7 +96,7 @@ select {
     transform:translateX(-140px);
 }
 
-/* С‚РѕС‡РєРё */
+/* Timeline markers */
 .path .timeline-point {
     position:absolute;
     top:-6px;
@@ -178,7 +178,7 @@ select {
     }
 }
 
-/* СЌРєСЃРїРѕРЅР°С‚С‹ */
+/* Exhibits */
 .artifact {
     --artifact-lift:-135px;
     --info-gap:78px;
@@ -319,7 +319,7 @@ select {
     }
 }
 
-/* РЅР°Р·РІР°РЅРёРµ */
+/* Exhibit labels */
 .artifact .info {
     position:absolute;
     top:0;
@@ -351,12 +351,12 @@ select {
     --artifact-lift-small:-160px;
 }
 
-/* СЂР°СЃРїРѕР»РѕР¶РµРЅРёРµ */
+/* Scene positions */
 .left { left:11%; top:51%; }
 .center { left:49%; top:38%; }
 .right { left:68%; top:51%; }
 
-/* РєРЅРѕРїРєРё */
+/* Navigation buttons */
 .nav-btn {
     position:fixed;
     top:50%;
@@ -379,7 +379,7 @@ select {
 #prev-room { left:20px; }
 #next-room { right:20px; }
 
-/* РјРѕРґР°Р»РєР° */
+/* Modal window */
 .modal {
     display:none;
     position:fixed;
@@ -448,7 +448,7 @@ select {
     cursor:pointer;
 }
 
-/* РіР»Р°РІРЅР°СЏ */
+/* Landing screen */
 .home {
     position:fixed;
     inset:0;
@@ -1360,7 +1360,7 @@ select {
 }
 
 
-/* Mobile focus mode: one main exhibit per period without changing desktop layout */
+/* Mobile view: one active exhibit per period */
 .scene-mobile-picker {
     display:none;
 }
@@ -1637,7 +1637,7 @@ select {
     }
 }
 
-/* Mobile only: hide top artifact labels */
+/* Mobile view: hide labels above exhibits */
 @media (max-width: 900px), (max-height: 540px) and (orientation: landscape) {
     .artifact .info,
     .scene.mobile-focus-mode .artifact.mobile-active .info {

@@ -1,7 +1,7 @@
 ﻿/*
-  1 экран = 1 сцена.
-  Данные музея собраны в одном месте: сцены и экспонаты.
-  Файл пересобран автоматически после очистки дубликатов и перепаковки сцен.
+  One screen is one scene.
+  Scenes and exhibits live here so the catalog, search, and gallery use the same source of truth.
+  New entries are easier to maintain when they are added here with a clear title, period, and description.
 */
 window.MUSEUM_DATA = {
     scenes: [
@@ -97,12 +97,6 @@ window.MUSEUM_DATA = {
         },
         {
             id: "scene-1930-16",
-            label: "1930 - 1970",
-            background: "assets/img/scenes/newhall1.jpg",
-            timeline: ["1930", "1950", "1970"]
-        },
-        {
-            id: "scene-1930-17",
             label: "1930 - 1970",
             background: "assets/img/scenes/newhall1.jpg",
             timeline: ["1930", "1950", "1970"]
@@ -569,383 +563,351 @@ window.MUSEUM_DATA = {
             id: "arifmometr_3d",
             sceneId: "scene-1930-05",
             slot: "left",
-            label: "Арифмометр 3Д",
-            title: "Арифмометр 3Д",
+            label: "Арифмометр 3D",
+            title: "Арифмометр 3D",
             image: "assets/img/exhibits/arifmometr_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "armeyskiy_meshok_3d",
             sceneId: "scene-1930-05",
             slot: "center",
-            label: "Армейский мешок 3Д",
-            title: "Армейский мешок 3Д",
+            label: "Армейский мешок 3D",
+            title: "Армейский мешок 3D",
             image: "assets/img/exhibits/armeyskiy_meshok_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "armeyskiy_meshok_3d_2",
             sceneId: "scene-1930-05",
             slot: "right",
-            label: "Армейский мешок 3Д (2)",
-            title: "Армейский мешок 3Д (2)",
+            label: "Армейский мешок 3D",
+            title: "Армейский мешок 3D",
             image: "assets/img/exhibits/armeyskiy_meshok_3d_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
-        },
-        {
-            id: "bak_3d",
-            sceneId: "scene-1930-06",
-            slot: "left",
-            label: "Бак 3Д",
-            title: "Бак 3Д",
-            image: "assets/img/exhibits/bak_3d.png",
-            searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "voennyy_galstuk_3d",
             sceneId: "scene-1930-06",
-            slot: "center",
-            label: "Военный галстук 3Д",
-            title: "Военный галстук 3Д",
+            slot: "left",
+            label: "Военный галстук 3D",
+            title: "Военный галстук 3D",
             image: "assets/img/exhibits/voennyy_galstuk_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "znachok_gotov_k_zaschite_rodiny",
             sceneId: "scene-1930-06",
-            slot: "right",
+            slot: "center",
             label: "Значок «Готов к защите Родины»",
             title: "Значок «Готов к защите Родины»",
             image: "assets/img/exhibits/znachok_gotov_k_zaschite_rodiny.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "znachok_druzhinnik_sssr",
-            sceneId: "scene-1930-07",
-            slot: "left",
+            sceneId: "scene-1930-06",
+            slot: "right",
             label: "Значок «Дружинник» СССР",
             title: "Значок «Дружинник» СССР",
             image: "assets/img/exhibits/znachok_druzhinnik_sssr.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "znachok_otlichnik_sovetskoy_armii",
             sceneId: "scene-1930-07",
-            slot: "center",
+            slot: "left",
             label: "Значок «Отличник советской армии»",
             title: "Значок «Отличник советской армии»",
             image: "assets/img/exhibits/znachok_otlichnik_sovetskoy_armii.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "znachok_pioneriya_gdr",
             sceneId: "scene-1930-07",
-            slot: "right",
+            slot: "center",
             label: "Значок «Пионерия ГДР»",
             title: "Значок «Пионерия ГДР»",
             image: "assets/img/exhibits/znachok_pioneriya_gdr.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "kaska_3d",
-            sceneId: "scene-1930-08",
-            slot: "left",
-            label: "Каска 3Д",
-            title: "Каска 3Д",
+            sceneId: "scene-1930-07",
+            slot: "right",
+            label: "Каска 3D",
+            title: "Каска 3D",
             image: "assets/img/exhibits/kaska_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "kaska_3d_2",
             sceneId: "scene-1930-08",
-            slot: "center",
-            label: "Каска 3Д (2)",
-            title: "Каска 3Д (2)",
+            slot: "left",
+            label: "Каска 3D",
+            title: "Каска 3D",
             image: "assets/img/exhibits/kaska_3d_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
-        },
-        {
-            id: "kitel_3d",
-            sceneId: "scene-1930-08",
-            slot: "right",
-            label: "Китель 3Д",
-            title: "Китель 3Д",
-            image: "assets/img/exhibits/kitel_3d.png",
-            artifactClass: "artifact-compact-tall",
-            searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "kotelok",
-            sceneId: "scene-1930-09",
-            slot: "left",
+            sceneId: "scene-1930-08",
+            slot: "center",
             label: "Котелок",
             title: "Котелок",
             image: "assets/img/exhibits/kotelok.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "kotelok_2",
-            sceneId: "scene-1930-09",
-            slot: "center",
-            label: "Котелок (2)",
-            title: "Котелок (2)",
+            sceneId: "scene-1930-08",
+            slot: "right",
+            label: "Котелок",
+            title: "Котелок",
             image: "assets/img/exhibits/kotelok_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "kotelok_3d",
             sceneId: "scene-1930-09",
-            slot: "right",
-            label: "Котелок 3Д",
-            title: "Котелок 3Д",
+            slot: "left",
+            label: "Котелок 3D",
+            title: "Котелок 3D",
             image: "assets/img/exhibits/kotelok_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medali_70_let_vooruzhennyh_sil",
-            sceneId: "scene-1930-10",
-            slot: "left",
+            sceneId: "scene-1930-09",
+            slot: "center",
             label: "Медали «70 лет Вооруженных сил»",
             title: "Медали «70 лет Вооруженных сил»",
             image: "assets/img/exhibits/medali_70_let_vooruzhennyh_sil.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_50_let_vooruzhennyh_sil",
-            sceneId: "scene-1930-10",
-            slot: "center",
+            sceneId: "scene-1930-09",
+            slot: "right",
             label: "Медаль «50 лет Вооруженных сил»",
             title: "Медаль «50 лет Вооруженных сил»",
             image: "assets/img/exhibits/medal_50_let_vooruzhennyh_sil.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_50_let_vooruzhennyh_sil_sssr",
             sceneId: "scene-1930-10",
-            slot: "right",
+            slot: "left",
             label: "Медаль «50 лет вооруженных сил СССР»",
             title: "Медаль «50 лет вооруженных сил СССР»",
             image: "assets/img/exhibits/medal_50_let_vooruzhennyh_sil_sssr.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_70_let_vooruzhennyh_sil",
-            sceneId: "scene-1930-11",
-            slot: "left",
+            sceneId: "scene-1930-10",
+            slot: "center",
             label: "Медаль «70 лет Вооруженных сил»",
             title: "Медаль «70 лет Вооруженных сил»",
             image: "assets/img/exhibits/medal_70_let_vooruzhennyh_sil.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_truzheniku_tyla",
-            sceneId: "scene-1930-11",
-            slot: "center",
+            sceneId: "scene-1930-10",
+            slot: "right",
             label: "Медаль «Труженику тыла»",
             title: "Медаль «Труженику тыла»",
             image: "assets/img/exhibits/medal_truzheniku_tyla.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_truzheniku_tyla_2",
             sceneId: "scene-1930-11",
-            slot: "right",
-            label: "Медаль «Труженику тыла» (2)",
-            title: "Медаль «Труженику тыла» (2)",
+            slot: "left",
+            label: "Медаль «Труженику тыла»",
+            title: "Медаль «Труженику тыла»",
             image: "assets/img/exhibits/medal_truzheniku_tyla_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_georgiya_zhukova",
-            sceneId: "scene-1930-12",
-            slot: "left",
+            sceneId: "scene-1930-11",
+            slot: "center",
             label: "Медаль Георгия Жукова",
             title: "Медаль Георгия Жукова",
             image: "assets/img/exhibits/medal_georgiya_zhukova.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_za_doblestnyy_trud_v_vov",
-            sceneId: "scene-1930-12",
-            slot: "center",
+            sceneId: "scene-1930-11",
+            slot: "right",
             label: "Медаль За доблестный труд в ВОВ",
             title: "Медаль За доблестный труд в ВОВ",
             image: "assets/img/exhibits/medal_za_doblestnyy_trud_v_vov.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "medal_stoletiyu_georgiya_zhukova",
             sceneId: "scene-1930-12",
-            slot: "right",
+            slot: "left",
             label: "Медаль столетию Георгия Жукова",
             title: "Медаль столетию Георгия Жукова",
             image: "assets/img/exhibits/medal_stoletiyu_georgiya_zhukova.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "model_samoleta_ilya_muromets_na_podstavke_3d",
-            sceneId: "scene-1930-13",
-            slot: "left",
+            sceneId: "scene-1930-12",
+            slot: "center",
             label: "Модель самолета - «Илья Муромец» на…",
-            title: "Модель самолета - «Илья Муромец» на подставке 3Д",
+            title: "Модель самолета - «Илья Муромец» на подставке 3D",
             image: "assets/img/exhibits/model_samoleta_ilya_muromets_na_podstavke_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "nagrudnyy_znak_yunyy_pioner_beg",
-            sceneId: "scene-1930-13",
-            slot: "center",
+            sceneId: "scene-1930-12",
+            slot: "right",
             label: "Нагрудный знак «Юный пионер бег»",
             title: "Нагрудный знак «Юный пионер бег»",
             image: "assets/img/exhibits/nagrudnyy_znak_yunyy_pioner_beg.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "ofitserskaya_papaha_3d",
             sceneId: "scene-1930-13",
-            slot: "right",
-            label: "Офицерская папаха 3Д",
-            title: "Офицерская папаха 3Д",
+            slot: "left",
+            label: "Офицерская папаха 3D",
+            title: "Офицерская папаха 3D",
             image: "assets/img/exhibits/ofitserskaya_papaha_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "ofitserskaya_polevaya_furazhka",
-            sceneId: "scene-1930-14",
-            slot: "left",
+            sceneId: "scene-1930-13",
+            slot: "center",
             label: "Офицерская полевая фуражка",
             title: "Офицерская полевая фуражка",
             image: "assets/img/exhibits/ofitserskaya_polevaya_furazhka.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "ofitserskaya_sumka_3d",
-            sceneId: "scene-1930-14",
-            slot: "center",
-            label: "Офицерская сумка 3Д",
-            title: "Офицерская сумка 3Д",
+            sceneId: "scene-1930-13",
+            slot: "right",
+            label: "Офицерская сумка 3D",
+            title: "Офицерская сумка 3D",
             image: "assets/img/exhibits/ofitserskaya_sumka_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "pilotki_3d",
             sceneId: "scene-1930-14",
-            slot: "right",
-            label: "Пилотки 3Д",
-            title: "Пилотки 3Д",
+            slot: "left",
+            label: "Пилотки 3D",
+            title: "Пилотки 3D",
             image: "assets/img/exhibits/pilotki_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "podsumok_3d",
-            sceneId: "scene-1930-15",
-            slot: "left",
-            label: "Подсумок 3Д",
-            title: "Подсумок 3Д",
+            sceneId: "scene-1930-14",
+            slot: "center",
+            label: "Подсумок 3D",
+            title: "Подсумок 3D",
             image: "assets/img/exhibits/podsumok_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "protivogaz",
-            sceneId: "scene-1930-15",
-            slot: "center",
+            sceneId: "scene-1930-14",
+            slot: "right",
             label: "Противогаз",
             title: "Противогаз",
             image: "assets/img/exhibits/protivogaz.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "protivogaz_2",
             sceneId: "scene-1930-15",
-            slot: "right",
-            label: "Противогаз (2)",
-            title: "Противогаз (2)",
+            slot: "left",
+            label: "Противогаз",
+            title: "Противогаз",
             image: "assets/img/exhibits/protivogaz_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "protivogaz_3d",
-            sceneId: "scene-1930-16",
-            slot: "left",
-            label: "Противогаз 3Д",
-            title: "Противогаз 3Д",
+            sceneId: "scene-1930-15",
+            slot: "center",
+            label: "Противогаз 3D",
+            title: "Противогаз 3D",
             image: "assets/img/exhibits/protivogaz_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "radiola_rigonda_102_3d",
-            sceneId: "scene-1930-16",
-            slot: "center",
-            label: "Радиола Ригонда 102 3Д",
-            title: "Радиола Ригонда 102 3Д",
+            sceneId: "scene-1930-15",
+            slot: "right",
+            label: "Радиола Ригонда 102 3D",
+            title: "Радиола Ригонда 102 3D",
             image: "assets/img/exhibits/radiola_rigonda_102_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "radiola_estoniya_3d",
             sceneId: "scene-1930-16",
-            slot: "right",
-            label: "Радиола Эстония 3Д",
-            title: "Радиола Эстония 3Д",
+            slot: "left",
+            label: "Радиола Эстония 3D",
+            title: "Радиола Эстония 3D",
             image: "assets/img/exhibits/radiola_estoniya_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
-        },
-        {
-            id: "soldatskaya_rubashka_s_pogonami_3d",
-            sceneId: "scene-1930-17",
-            slot: "left",
-            label: "Солдатская рубашка с погонами 3Д",
-            title: "Солдатская рубашка с погонами 3Д",
-            image: "assets/img/exhibits/soldatskaya_rubashka_s_pogonami_3d.png",
-            artifactClass: "artifact-compact-tall",
-            searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "ugolovnyy_kodeks",
-            sceneId: "scene-1930-17",
-            slot: "right",
+            sceneId: "scene-1930-16",
+            slot: "center",
             label: "Уголовный кодекс",
             title: "Уголовный кодекс",
             image: "assets/img/exhibits/ugolovnyy_kodeks.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
         {
             id: "protivbak",
@@ -1189,17 +1151,17 @@ window.MUSEUM_DATA = {
             title: "Альбом",
             image: "assets/img/exhibits/albom.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "apparat_dlya_proektsii_slaydov_3d",
             sceneId: "scene-1970-09",
             slot: "left",
-            label: "Аппарат для проекции слайдов 3Д",
-            title: "Аппарат для проекции слайдов 3Д",
+            label: "Аппарат для проекции слайдов 3D",
+            title: "Аппарат для проекции слайдов 3D",
             image: "assets/img/exhibits/apparat_dlya_proektsii_slaydov_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "attekstat_dotsenta",
@@ -1209,7 +1171,7 @@ window.MUSEUM_DATA = {
             title: "Аттекстат доцента",
             image: "assets/img/exhibits/attekstat_dotsenta.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "attestat_dotsenta",
@@ -1219,17 +1181,17 @@ window.MUSEUM_DATA = {
             title: "Аттестат доцента",
             image: "assets/img/exhibits/attestat_dotsenta.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "attestat_dotsenta_2",
             sceneId: "scene-1970-10",
             slot: "left",
-            label: "Аттестат доцента (2)",
-            title: "Аттестат доцента (2)",
+            label: "Аттестат доцента",
+            title: "Аттестат доцента",
             image: "assets/img/exhibits/attestat_dotsenta_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "blagodarstvennoe_pismo",
@@ -1239,7 +1201,7 @@ window.MUSEUM_DATA = {
             title: "Благодарственное письмо",
             image: "assets/img/exhibits/blagodarstvennoe_pismo.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "vympel",
@@ -1249,37 +1211,37 @@ window.MUSEUM_DATA = {
             title: "Вымпел",
             image: "assets/img/exhibits/vympel.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "vympel_2",
             sceneId: "scene-1970-11",
             slot: "left",
-            label: "Вымпел (2)",
-            title: "Вымпел (2)",
+            label: "Вымпел",
+            title: "Вымпел",
             image: "assets/img/exhibits/vympel_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "vympel_3",
             sceneId: "scene-1970-11",
             slot: "center",
-            label: "Вымпел (3)",
-            title: "Вымпел (3)",
+            label: "Вымпел",
+            title: "Вымпел",
             image: "assets/img/exhibits/vympel_3.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "vypel_3",
             sceneId: "scene-1970-11",
             slot: "right",
-            label: "Выпел (3)",
-            title: "Выпел (3)",
+            label: "Выпел",
+            title: "Выпел",
             image: "assets/img/exhibits/vypel_3.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "zhurnal",
@@ -1289,7 +1251,7 @@ window.MUSEUM_DATA = {
             title: "Журнал",
             image: "assets/img/exhibits/zhurnal.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "zachetnaya_knizhka",
@@ -1299,17 +1261,17 @@ window.MUSEUM_DATA = {
             title: "Зачетная книжка",
             image: "assets/img/exhibits/zachetnaya_knizhka.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "zachetnaya_knizhka_2",
             sceneId: "scene-1970-12",
             slot: "right",
-            label: "Зачетная книжка (2)",
-            title: "Зачетная книжка (2)",
+            label: "Зачетная книжка",
+            title: "Зачетная книжка",
             image: "assets/img/exhibits/zachetnaya_knizhka_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "znachok_60_let_sssr",
@@ -1319,7 +1281,7 @@ window.MUSEUM_DATA = {
             title: "Значок «60 лет СССР»",
             image: "assets/img/exhibits/znachok_60_let_sssr.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "znachok_kirovskiy_rayon",
@@ -1329,7 +1291,7 @@ window.MUSEUM_DATA = {
             title: "Значок Кировский район",
             image: "assets/img/exhibits/znachok_kirovskiy_rayon.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "znachok_chkv",
@@ -1339,7 +1301,7 @@ window.MUSEUM_DATA = {
             title: "Значок ЧКВ",
             image: "assets/img/exhibits/znachok_chkv.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kakarda",
@@ -1349,17 +1311,17 @@ window.MUSEUM_DATA = {
             title: "Какарда",
             image: "assets/img/exhibits/kakarda.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kalkulyator_3d",
             sceneId: "scene-1970-14",
             slot: "center",
-            label: "Калькулятор 3Д",
-            title: "Калькулятор 3Д",
+            label: "Калькулятор 3D",
+            title: "Калькулятор 3D",
             image: "assets/img/exhibits/kalkulyator_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina",
@@ -1369,77 +1331,77 @@ window.MUSEUM_DATA = {
             title: "Картина",
             image: "assets/img/exhibits/kartina.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_2",
             sceneId: "scene-1970-15",
             slot: "left",
-            label: "Картина (2)",
-            title: "Картина (2)",
+            label: "Картина",
+            title: "Картина",
             image: "assets/img/exhibits/kartina_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_3",
             sceneId: "scene-1970-15",
             slot: "center",
-            label: "Картина (3)",
-            title: "Картина (3)",
+            label: "Картина",
+            title: "Картина",
             image: "assets/img/exhibits/kartina_3.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_4",
             sceneId: "scene-1970-15",
             slot: "right",
-            label: "Картина (4)",
-            title: "Картина (4)",
+            label: "Картина",
+            title: "Картина",
             image: "assets/img/exhibits/kartina_4.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_5",
             sceneId: "scene-1970-16",
             slot: "left",
-            label: "Картина (5)",
-            title: "Картина (5)",
+            label: "Картина",
+            title: "Картина",
             image: "assets/img/exhibits/kartina_5.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_6",
             sceneId: "scene-1970-16",
             slot: "center",
-            label: "Картина (6)",
-            title: "Картина (6)",
+            label: "Картина",
+            title: "Картина",
             image: "assets/img/exhibits/kartina_6.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_7",
             sceneId: "scene-1970-16",
             slot: "right",
-            label: "Картина (7)",
-            title: "Картина (7)",
+            label: "Картина",
+            title: "Картина",
             image: "assets/img/exhibits/kartina_7.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_8",
             sceneId: "scene-1970-17",
             slot: "left",
-            label: "Картина (8)",
-            title: "Картина (8)",
+            label: "Картина",
+            title: "Картина",
             image: "assets/img/exhibits/kartina_8.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kartina_korabl",
@@ -1449,7 +1411,7 @@ window.MUSEUM_DATA = {
             title: "Картина корабль",
             image: "assets/img/exhibits/kartina_korabl.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta",
@@ -1459,67 +1421,67 @@ window.MUSEUM_DATA = {
             title: "Кассета",
             image: "assets/img/exhibits/kasseta.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_2",
             sceneId: "scene-1970-18",
             slot: "left",
-            label: "Кассета (2)",
-            title: "Кассета (2)",
+            label: "Кассета",
+            title: "Кассета",
             image: "assets/img/exhibits/kasseta_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_3",
             sceneId: "scene-1970-18",
             slot: "center",
-            label: "Кассета (3)",
-            title: "Кассета (3)",
+            label: "Кассета",
+            title: "Кассета",
             image: "assets/img/exhibits/kasseta_3.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_4",
             sceneId: "scene-1970-18",
             slot: "right",
-            label: "Кассета (4)",
-            title: "Кассета (4)",
+            label: "Кассета",
+            title: "Кассета",
             image: "assets/img/exhibits/kasseta_4.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_5",
             sceneId: "scene-1970-19",
             slot: "left",
-            label: "Кассета (5)",
-            title: "Кассета (5)",
+            label: "Кассета",
+            title: "Кассета",
             image: "assets/img/exhibits/kasseta_5.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_6",
             sceneId: "scene-1970-19",
             slot: "center",
-            label: "Кассета (6)",
-            title: "Кассета (6)",
+            label: "Кассета",
+            title: "Кассета",
             image: "assets/img/exhibits/kasseta_6.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_7",
             sceneId: "scene-1970-19",
             slot: "right",
-            label: "Кассета (7)",
-            title: "Кассета (7)",
+            label: "Кассета",
+            title: "Кассета",
             image: "assets/img/exhibits/kasseta_7.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_osvobozhdenie_bitva_za_berlin",
@@ -1529,7 +1491,7 @@ window.MUSEUM_DATA = {
             title: "Кассета «Освобождение. Битва за Берлин»",
             image: "assets/img/exhibits/kasseta_osvobozhdenie_bitva_za_berlin.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kasseta_den_nauki",
@@ -1539,17 +1501,17 @@ window.MUSEUM_DATA = {
             title: "Кассета День науки",
             image: "assets/img/exhibits/kasseta_den_nauki.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kassetnyy_magnitofon_3d",
             sceneId: "scene-1970-20",
             slot: "right",
-            label: "Кассетный магнитофон 3Д",
-            title: "Кассетный магнитофон 3Д",
+            label: "Кассетный магнитофон 3D",
+            title: "Кассетный магнитофон 3D",
             image: "assets/img/exhibits/kassetnyy_magnitofon_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kassety",
@@ -1559,27 +1521,27 @@ window.MUSEUM_DATA = {
             title: "Кассеты",
             image: "assets/img/exhibits/kassety.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "katushechnyy_magnitofon_3d",
             sceneId: "scene-1970-21",
             slot: "center",
-            label: "Катушечный магнитофон 3Д",
-            title: "Катушечный магнитофон 3Д",
+            label: "Катушечный магнитофон 3D",
+            title: "Катушечный магнитофон 3D",
             image: "assets/img/exhibits/katushechnyy_magnitofon_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kinoproektor_3d",
             sceneId: "scene-1970-21",
             slot: "right",
-            label: "Кинопроектор 3Д",
-            title: "Кинопроектор 3Д",
+            label: "Кинопроектор 3D",
+            title: "Кинопроектор 3D",
             image: "assets/img/exhibits/kinoproektor_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga",
@@ -1589,107 +1551,107 @@ window.MUSEUM_DATA = {
             title: "Книга",
             image: "assets/img/exhibits/kniga.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_10",
             sceneId: "scene-1970-22",
             slot: "center",
-            label: "Книга (10)",
-            title: "Книга (10)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_10.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_11",
             sceneId: "scene-1970-22",
             slot: "right",
-            label: "Книга (11)",
-            title: "Книга (11)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_11.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_2",
             sceneId: "scene-1970-23",
             slot: "left",
-            label: "Книга (2)",
-            title: "Книга (2)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_3",
             sceneId: "scene-1970-23",
             slot: "center",
-            label: "Книга (3)",
-            title: "Книга (3)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_3.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_4",
             sceneId: "scene-1970-23",
             slot: "right",
-            label: "Книга (4)",
-            title: "Книга (4)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_4.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_5",
             sceneId: "scene-1970-24",
             slot: "left",
-            label: "Книга (5)",
-            title: "Книга (5)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_5.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_6",
             sceneId: "scene-1970-24",
             slot: "center",
-            label: "Книга (6)",
-            title: "Книга (6)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_6.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_7",
             sceneId: "scene-1970-24",
             slot: "right",
-            label: "Книга (7)",
-            title: "Книга (7)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_7.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_8",
             sceneId: "scene-1970-25",
             slot: "left",
-            label: "Книга (8)",
-            title: "Книга (8)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_8.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_9",
             sceneId: "scene-1970-25",
             slot: "center",
-            label: "Книга (9)",
-            title: "Книга (9)",
+            label: "Книга",
+            title: "Книга",
             image: "assets/img/exhibits/kniga_9.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_stanovlenie_i_razvitie_sovetskogo_ugolovnogo_zakonodatelstva",
@@ -1699,7 +1661,7 @@ window.MUSEUM_DATA = {
             title: "Книга «Становление и развитие советского уголовного законодательства»",
             image: "assets/img/exhibits/kniga_stanovlenie_i_razvitie_sovetskogo_ugolovnogo_zakonodatelstva.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kniga_pochetnyh_gostey",
@@ -1709,7 +1671,7 @@ window.MUSEUM_DATA = {
             title: "Книга почетных гостей",
             image: "assets/img/exhibits/kniga_pochetnyh_gostey.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kolonki",
@@ -1719,57 +1681,57 @@ window.MUSEUM_DATA = {
             title: "Колонки",
             image: "assets/img/exhibits/kolonki.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "korobka_3d",
             sceneId: "scene-1970-26",
             slot: "right",
-            label: "Коробка 3Д",
-            title: "Коробка 3Д",
+            label: "Коробка 3D",
+            title: "Коробка 3D",
             image: "assets/img/exhibits/korobka_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kruzhka_sinyaya_3d",
             sceneId: "scene-1970-27",
             slot: "left",
-            label: "Кружка синяя 3Д",
-            title: "Кружка синяя 3Д",
+            label: "Кружка синяя 3D",
+            title: "Кружка синяя 3D",
             image: "assets/img/exhibits/kruzhka_sinyaya_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kubok_3d",
             sceneId: "scene-1970-27",
             slot: "center",
-            label: "Кубок 3Д",
-            title: "Кубок 3Д",
+            label: "Кубок 3D",
+            title: "Кубок 3D",
             image: "assets/img/exhibits/kubok_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kubok_3d_2",
             sceneId: "scene-1970-27",
             slot: "right",
-            label: "Кубок 3Д (2)",
-            title: "Кубок 3Д (2)",
+            label: "Кубок 3D",
+            title: "Кубок 3D",
             image: "assets/img/exhibits/kubok_3d_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kubok_za_pervenstvo_po_basketbolu_3d",
             sceneId: "scene-1970-28",
             slot: "left",
-            label: "Кубок за первенство по баскетболу 3Д",
-            title: "Кубок за первенство по баскетболу 3Д",
+            label: "Кубок за первенство по баскетболу 3D",
+            title: "Кубок за первенство по баскетболу 3D",
             image: "assets/img/exhibits/kubok_za_pervenstvo_po_basketbolu_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "urkubok",
@@ -1785,51 +1747,51 @@ window.MUSEUM_DATA = {
             id: "kubok_po_legkoy_atletike_3d",
             sceneId: "scene-1970-28",
             slot: "right",
-            label: "Кубок по легкой атлетике 3Д",
-            title: "Кубок по легкой атлетике 3Д",
+            label: "Кубок по легкой атлетике 3D",
+            title: "Кубок по легкой атлетике 3D",
             image: "assets/img/exhibits/kubok_po_legkoy_atletike_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kubok_s_harkova_3d",
             sceneId: "scene-1970-29",
             slot: "left",
-            label: "Кубок с Харькова 3Д",
-            title: "Кубок с Харькова 3Д",
+            label: "Кубок с Харькова 3D",
+            title: "Кубок с Харькова 3D",
             image: "assets/img/exhibits/kubok_s_harkova_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kubok_sportivnyy_po_borbe_3d",
             sceneId: "scene-1970-29",
             slot: "center",
-            label: "Кубок спортивный по борьбе 3Д",
-            title: "Кубок спортивный по борьбе 3Д",
+            label: "Кубок спортивный по борьбе 3D",
+            title: "Кубок спортивный по борьбе 3D",
             image: "assets/img/exhibits/kubok_sportivnyy_po_borbe_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "kuvshin_3d",
             sceneId: "scene-1970-29",
             slot: "right",
-            label: "Кувшин 3Д",
-            title: "Кувшин 3Д",
+            label: "Кувшин 3D",
+            title: "Кувшин 3D",
             image: "assets/img/exhibits/kuvshin_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "magnitofon_3d",
             sceneId: "scene-1970-30",
             slot: "left",
-            label: "Магнитофон 3Д",
-            title: "Магнитофон 3Д",
+            label: "Магнитофон 3D",
+            title: "Магнитофон 3D",
             image: "assets/img/exhibits/magnitofon_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medali_50_let_pobedy",
@@ -1839,7 +1801,7 @@ window.MUSEUM_DATA = {
             title: "Медали «50 лет Победы»",
             image: "assets/img/exhibits/medali_50_let_pobedy.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medali_60_let_vooruzhennyh_sil",
@@ -1849,7 +1811,7 @@ window.MUSEUM_DATA = {
             title: "Медали «60 лет Вооружённых сил»",
             image: "assets/img/exhibits/medali_60_let_vooruzhennyh_sil.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medal_50_let_pobedy",
@@ -1859,7 +1821,7 @@ window.MUSEUM_DATA = {
             title: "Медаль «50 лет Победы»",
             image: "assets/img/exhibits/medal_50_let_pobedy.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medal_60_let_vooruzhennyh_sil",
@@ -1869,7 +1831,7 @@ window.MUSEUM_DATA = {
             title: "Медаль «60 лет Вооружённых сил»",
             image: "assets/img/exhibits/medal_60_let_vooruzhennyh_sil.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medal_60_let_vyzvoleniya_respubliki_belarus_ot_nemetsko_fashistskih_za",
@@ -1879,7 +1841,7 @@ window.MUSEUM_DATA = {
             title: "Медаль «60 лет вызволения Республики Беларусь от немецко-фашистских захватчиков»",
             image: "assets/img/exhibits/medal_60_let_vyzvoleniya_respubliki_belarus_ot_nemetsko_fashistskih_za.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medal_za_dolgoletniy_dobrosovestnyy_trud",
@@ -1889,7 +1851,7 @@ window.MUSEUM_DATA = {
             title: "Медаль «За долголетний добросовестный труд»",
             image: "assets/img/exhibits/medal_za_dolgoletniy_dobrosovestnyy_trud.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medal_za_vozrozhdenie_kazachestva",
@@ -1899,7 +1861,7 @@ window.MUSEUM_DATA = {
             title: "Медаль За возрождение Казачества",
             image: "assets/img/exhibits/medal_za_vozrozhdenie_kazachestva.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "medal_za_doblestnyy_trud_v_oznamenovanie_100_letiya_so_dnya_rozhdeniya",
@@ -1909,37 +1871,37 @@ window.MUSEUM_DATA = {
             title: "Медаль За доблестный труд в ознаменование 100 летия со дня рождения Ленина",
             image: "assets/img/exhibits/medal_za_doblestnyy_trud_v_oznamenovanie_100_letiya_so_dnya_rozhdeniya.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "mikroskop_3d",
             sceneId: "scene-1970-33",
             slot: "left",
-            label: "Микроскоп 3Д",
-            title: "Микроскоп 3Д",
+            label: "Микроскоп 3D",
+            title: "Микроскоп 3D",
             image: "assets/img/exhibits/mikroskop_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "miska_3d",
             sceneId: "scene-1970-33",
             slot: "center",
-            label: "Миска 3Д",
-            title: "Миска 3Д",
+            label: "Миска 3D",
+            title: "Миска 3D",
             image: "assets/img/exhibits/miska_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "muzykalnaya_ustanovka_3d",
             sceneId: "scene-1970-33",
             slot: "right",
-            label: "Музыкальная установка 3Д",
-            title: "Музыкальная установка 3Д",
+            label: "Музыкальная установка 3D",
+            title: "Музыкальная установка 3D",
             image: "assets/img/exhibits/muzykalnaya_ustanovka_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "nadpis_na_kubke_harkov",
@@ -1949,7 +1911,7 @@ window.MUSEUM_DATA = {
             title: "Надпись на кубке Харьков",
             image: "assets/img/exhibits/nadpis_na_kubke_harkov.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "nadpis_na_snaryade",
@@ -1959,7 +1921,7 @@ window.MUSEUM_DATA = {
             title: "Надпись на снаряде",
             image: "assets/img/exhibits/nadpis_na_snaryade.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "nadpisna_kubke_latina",
@@ -1969,7 +1931,7 @@ window.MUSEUM_DATA = {
             title: "Надписьна кубке (Латина)",
             image: "assets/img/exhibits/nadpisna_kubke_latina.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "orden_za_veru_volyu_i_otechestvo",
@@ -1979,7 +1941,7 @@ window.MUSEUM_DATA = {
             title: "Орден «За веру, волю и отечество»",
             image: "assets/img/exhibits/orden_za_veru_volyu_i_otechestvo.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "ordenskaya_knizhka_chermenskiy_ivan",
@@ -1989,7 +1951,7 @@ window.MUSEUM_DATA = {
             title: "Орденская книжка Черменский Иван",
             image: "assets/img/exhibits/ordenskaya_knizhka_chermenskiy_ivan.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "ordenskaya_planka",
@@ -1999,17 +1961,17 @@ window.MUSEUM_DATA = {
             title: "Орденская планка",
             image: "assets/img/exhibits/ordenskaya_planka.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "ordenskaya_planka_2",
             sceneId: "scene-1970-36",
             slot: "left",
-            label: "Орденская планка (2)",
-            title: "Орденская планка (2)",
+            label: "Орденская планка",
+            title: "Орденская планка",
             image: "assets/img/exhibits/ordenskaya_planka_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "ossnovanie_medali",
@@ -2019,17 +1981,17 @@ window.MUSEUM_DATA = {
             title: "Осснование медали",
             image: "assets/img/exhibits/ossnovanie_medali.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pk_testovyy_3d",
             sceneId: "scene-1970-36",
             slot: "right",
-            label: "ПК тестовый 3Д",
-            title: "ПК тестовый 3Д",
+            label: "ПК тестовый 3D",
+            title: "ПК тестовый 3D",
             image: "assets/img/exhibits/pk_testovyy_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pamyatnyy_znachok",
@@ -2039,7 +2001,7 @@ window.MUSEUM_DATA = {
             title: "Памятный значок",
             image: "assets/img/exhibits/pamyatnyy_znachok.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "papka",
@@ -2049,7 +2011,7 @@ window.MUSEUM_DATA = {
             title: "Папка",
             image: "assets/img/exhibits/papka.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "papka_s_dokumentami",
@@ -2059,7 +2021,7 @@ window.MUSEUM_DATA = {
             title: "Папка с документами",
             image: "assets/img/exhibits/papka_s_dokumentami.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka",
@@ -2069,107 +2031,107 @@ window.MUSEUM_DATA = {
             title: "Пластинка",
             image: "assets/img/exhibits/plastinka.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_10",
             sceneId: "scene-1970-38",
             slot: "center",
-            label: "Пластинка (10)",
-            title: "Пластинка (10)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_10.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_11",
             sceneId: "scene-1970-38",
             slot: "right",
-            label: "Пластинка (11)",
-            title: "Пластинка (11)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_11.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_2",
             sceneId: "scene-1970-39",
             slot: "left",
-            label: "Пластинка (2)",
-            title: "Пластинка (2)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_3",
             sceneId: "scene-1970-39",
             slot: "center",
-            label: "Пластинка (3)",
-            title: "Пластинка (3)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_3.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_4",
             sceneId: "scene-1970-39",
             slot: "right",
-            label: "Пластинка (4)",
-            title: "Пластинка (4)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_4.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_5",
             sceneId: "scene-1970-40",
             slot: "left",
-            label: "Пластинка (5)",
-            title: "Пластинка (5)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_5.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_6",
             sceneId: "scene-1970-40",
             slot: "center",
-            label: "Пластинка (6)",
-            title: "Пластинка (6)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_6.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_7",
             sceneId: "scene-1970-40",
             slot: "right",
-            label: "Пластинка (7)",
-            title: "Пластинка (7)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_7.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_8",
             sceneId: "scene-1970-41",
             slot: "left",
-            label: "Пластинка (8)",
-            title: "Пластинка (8)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_8.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "plastinka_9",
             sceneId: "scene-1970-41",
             slot: "center",
-            label: "Пластинка (9)",
-            title: "Пластинка (9)",
+            label: "Пластинка",
+            title: "Пластинка",
             image: "assets/img/exhibits/plastinka_9.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pogony_prokurorskie_chermenskogo",
@@ -2179,7 +2141,7 @@ window.MUSEUM_DATA = {
             title: "Погоны прокурорские Черменского",
             image: "assets/img/exhibits/pogony_prokurorskie_chermenskogo.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pozdravitelnaya_otkrytka",
@@ -2189,7 +2151,7 @@ window.MUSEUM_DATA = {
             title: "Поздравительная открытка",
             image: "assets/img/exhibits/pozdravitelnaya_otkrytka.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pozdravitelnaya_tablichka_v_svyazi_s_yubileem",
@@ -2199,17 +2161,17 @@ window.MUSEUM_DATA = {
             title: "Поздравительная табличка в связи с юбилеем",
             image: "assets/img/exhibits/pozdravitelnaya_tablichka_v_svyazi_s_yubileem.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pozdravitelnaya_tablichka_v_svyazi_s_yubileem_2",
             sceneId: "scene-1970-42",
             slot: "right",
             label: "Поздравительная табличка в связи с…",
-            title: "Поздравительная табличка в связи с юбилеем (2)",
+            title: "Поздравительная табличка в связи с юбилеем",
             image: "assets/img/exhibits/pozdravitelnaya_tablichka_v_svyazi_s_yubileem_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "portret",
@@ -2219,7 +2181,7 @@ window.MUSEUM_DATA = {
             title: "Портрет",
             image: "assets/img/exhibits/portret.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "portret_d_i_kurskogo",
@@ -2229,17 +2191,17 @@ window.MUSEUM_DATA = {
             title: "Портрет Д..И. Курского",
             image: "assets/img/exhibits/portret_d_i_kurskogo.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "portfel_rektora_professora_v_a_poznanskogo_3d",
             sceneId: "scene-1970-43",
             slot: "right",
             label: "Портфель ректора, профессора В.А. П…",
-            title: "Портфель ректора, профессора В.А. Познанского 3Д",
+            title: "Портфель ректора, профессора В.А. Познанского 3D",
             image: "assets/img/exhibits/portfel_rektora_professora_v_a_poznanskogo_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pochetnaya_gramota",
@@ -2249,7 +2211,7 @@ window.MUSEUM_DATA = {
             title: "Почетная грамота",
             image: "assets/img/exhibits/pochetnaya_gramota.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "pochetnaya_gramota_2",
@@ -2259,27 +2221,27 @@ window.MUSEUM_DATA = {
             title: "Почетная грамота",
             image: "assets/img/exhibits/pochetnaya_gramota_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "remen_3d",
             sceneId: "scene-1970-44",
             slot: "right",
-            label: "Ремень 3Д",
-            title: "Ремень 3Д",
+            label: "Ремень 3D",
+            title: "Ремень 3D",
             image: "assets/img/exhibits/remen_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "syui_v_pamyat_o_vstreche_vypusknikov_1947_goda_ot_vypusknitsy_zinich_3",
             sceneId: "scene-1970-45",
             slot: "left",
             label: "СЮИ в память о встрече выпускников…",
-            title: "СЮИ в память о встрече выпускников 1947 года. От выпускницы Зинич 3Д",
+            title: "СЮИ в память о встрече выпускников 1947 года. От выпускницы Зинич 3D",
             image: "assets/img/exhibits/syui_v_pamyat_o_vstreche_vypusknikov_1947_goda_ot_vypusknitsy_zinich_3.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "sbornik_nauchnyh_rabot",
@@ -2289,7 +2251,7 @@ window.MUSEUM_DATA = {
             title: "Сборник научных работ",
             image: "assets/img/exhibits/sbornik_nauchnyh_rabot.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "sbornik_pesen",
@@ -2299,7 +2261,7 @@ window.MUSEUM_DATA = {
             title: "Сборник песен",
             image: "assets/img/exhibits/sbornik_pesen.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "svidetelstvo",
@@ -2309,7 +2271,7 @@ window.MUSEUM_DATA = {
             title: "Свидетельство",
             image: "assets/img/exhibits/svidetelstvo.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "statuetka",
@@ -2319,58 +2281,58 @@ window.MUSEUM_DATA = {
             title: "Статуэтка",
             image: "assets/img/exhibits/statuetka.jpg",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "statuetka_vladimir_ulyanov_3d",
             sceneId: "scene-1970-46",
             slot: "right",
-            label: "Статуэтка Владимир Ульянов 3Д",
-            title: "Статуэтка Владимир Ульянов 3Д",
+            label: "Статуэтка Владимир Ульянов 3D",
+            title: "Статуэтка Владимир Ульянов 3D",
             image: "assets/img/exhibits/statuetka_vladimir_ulyanov_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "statuetka_s_delfinami_3d",
             sceneId: "scene-1970-47",
             slot: "left",
-            label: "Статуэтка с дельфинами 3Д",
-            title: "Статуэтка с дельфинами 3Д",
+            label: "Статуэтка с дельфинами 3D",
+            title: "Статуэтка с дельфинами 3D",
             image: "assets/img/exhibits/statuetka_s_delfinami_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "statuetka_s_delfinami_3d_2",
             sceneId: "scene-1970-47",
             slot: "center",
-            label: "Статуэтка с дельфинами 3Д (2)",
-            title: "Статуэтка с дельфинами 3Д (2)",
+            label: "Статуэтка с дельфинами 3D",
+            title: "Статуэтка с дельфинами 3D",
             image: "assets/img/exhibits/statuetka_s_delfinami_3d_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "stul_derevyannyy_s_rezboy_3d",
             sceneId: "scene-1970-47",
             slot: "right",
-            label: "Стул деревянный с резьбой 3Д",
-            title: "Стул деревянный с резьбой 3Д",
+            label: "Стул деревянный с резьбой 3D",
+            title: "Стул деревянный с резьбой 3D",
             image: "assets/img/exhibits/stul_derevyannyy_s_rezboy_3d.png",
             artifactClass: "artifact-compact-tall",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "super_kubok_yuga_rossii_3d",
             sceneId: "scene-1970-48",
             slot: "left",
-            label: "Супер кубок Юга России 3Д",
-            title: "Супер кубок Юга России 3Д",
+            label: "Супер кубок Юга России 3D",
+            title: "Супер кубок Юга России 3D",
             image: "assets/img/exhibits/super_kubok_yuga_rossii_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "udostoverenie_komissiya_po_borbe_s_organizovannoy_prestupnostyu_i_korr",
@@ -2380,7 +2342,7 @@ window.MUSEUM_DATA = {
             title: "Удостоверение «Комиссия по борьбе с организованной преступностью и коррупцией»",
             image: "assets/img/exhibits/udostoverenie_komissiya_po_borbe_s_organizovannoy_prestupnostyu_i_korr.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "udostoverenie_ministra_vysshego_i_srednego_spetsialnogo_obrazovanie_rs",
@@ -2390,7 +2352,7 @@ window.MUSEUM_DATA = {
             title: "Удостоверение Министра высшего и среднего специального образование РСФСР",
             image: "assets/img/exhibits/udostoverenie_ministra_vysshego_i_srednego_spetsialnogo_obrazovanie_rs.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
         {
             id: "usilzvuk",
@@ -2500,7 +2462,7 @@ window.MUSEUM_DATA = {
             title: "Знак СГАП",
             image: "assets/img/exhibits/znak_sgap.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "znachok_65_let_pobedy_v_vov",
@@ -2510,7 +2472,7 @@ window.MUSEUM_DATA = {
             title: "Значок 65 лет Победы в ВОВ",
             image: "assets/img/exhibits/znachok_65_let_pobedy_v_vov.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "kivin_2004",
@@ -2520,7 +2482,7 @@ window.MUSEUM_DATA = {
             title: "КиВиН 2004",
             image: "assets/img/exhibits/kivin_2004.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "medali_20_let_s_momenta_vyvoda_sovetskih_voysk_iz_afganistana_40_armiy",
@@ -2530,7 +2492,7 @@ window.MUSEUM_DATA = {
             title: "Медали 20 лет с момента вывода советских войск из Афганистана 40 армия",
             image: "assets/img/exhibits/medali_20_let_s_momenta_vyvoda_sovetskih_voysk_iz_afganistana_40_armiy.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "medal_60_let_pobedy_vov",
@@ -2540,7 +2502,7 @@ window.MUSEUM_DATA = {
             title: "Медаль «60 лет победы ВОВ»",
             image: "assets/img/exhibits/medal_60_let_pobedy_vov.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "medal_zaschitniku_pridnestrovya",
@@ -2550,17 +2512,17 @@ window.MUSEUM_DATA = {
             title: "Медаль «Защитнику Приднестровья»",
             image: "assets/img/exhibits/medal_zaschitniku_pridnestrovya.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "nabor_nastolnyh_nagrad_orenburzhe_3d",
             sceneId: "scene-2000-05",
             slot: "center",
             label: "Набор настольных наград «Оренбуржье…",
-            title: "Набор настольных наград «Оренбуржье» 3Д",
+            title: "Набор настольных наград «Оренбуржье» 3D",
             image: "assets/img/exhibits/nabor_nastolnyh_nagrad_orenburzhe_3d.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "sgpi",
@@ -2570,7 +2532,7 @@ window.MUSEUM_DATA = {
             title: "СГПИ",
             image: "assets/img/exhibits/sgpi.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "sertifikat",
@@ -2580,7 +2542,7 @@ window.MUSEUM_DATA = {
             title: "Сертификат",
             image: "assets/img/exhibits/sertifikat.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "sertifikat_2",
@@ -2590,7 +2552,7 @@ window.MUSEUM_DATA = {
             title: "Сертификат",
             image: "assets/img/exhibits/sertifikat_2.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "soglashenie",
@@ -2600,7 +2562,7 @@ window.MUSEUM_DATA = {
             title: "Соглашение",
             image: "assets/img/exhibits/soglashenie.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "udostoverenie_oon_baytin_m_i_60_let_obrazovaniya_onn",
@@ -2610,12 +2572,12 @@ window.MUSEUM_DATA = {
             title: "Удостоверение ООН Байтин М. И. 60 лет образования ОНН",
             image: "assets/img/exhibits/udostoverenie_oon_baytin_m_i_60_let_obrazovaniya_onn.png",
             searchTerms: [],
-            description: "Описание этого экспоната пока уточняется. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
+            description: "Описание в разработке. Предмет временно размещён в периоде «2000 - настоящее время» на основании его названия."
         },
         {
             id: "petr1",
             sceneId: "scene-2000-07",
-            slot: "right",
+            slot: "center",
             label: "Подарочный набор",
             title: "Подарочный набор",
             image: "assets/img/exhibits/petr1.png",
