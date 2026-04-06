@@ -195,6 +195,13 @@ select {
     transform:translateY(0);
 }
 
+.artifact picture {
+    width:340px;
+    display:block;
+    position:relative;
+    z-index:1;
+}
+
 .artifact img,
 .artifact model-viewer {
     width:340px;
@@ -205,6 +212,10 @@ select {
     transition:0.3s;
     transform:translateY(var(--artifact-lift));
     animation:pulse 3s infinite;
+}
+
+.artifact picture img {
+    width:100%;
 }
 
 .artifact-bust {
@@ -396,11 +407,24 @@ select {
     color:white;
 }
 
+.modal-picture,
 .modal img,
 #modal-model {
     width:50%;
     border-radius:12px;
     box-shadow:0 20px 50px rgba(0,0,0,0.8);
+}
+
+.modal-picture {
+    display:block;
+    overflow:hidden;
+}
+
+.modal-picture img {
+    width:100%;
+    display:block;
+    border-radius:inherit;
+    box-shadow:none;
 }
 
 #modal-model {
@@ -832,6 +856,10 @@ select {
         width: var(--artifact-size);
     }
 
+    .artifact picture {
+        width: var(--artifact-size);
+    }
+
     .artifact.center {
         --artifact-lift: -118px;
         --info-gap: 76px;
@@ -931,6 +959,7 @@ select {
         gap: 18px;
     }
 
+    .modal-picture,
     .modal img,
     #modal-model,
     .modal-text {
@@ -1601,6 +1630,10 @@ select {
 
     .artifact img,
     .artifact model-viewer {
+        width: var(--artifact-size);
+    }
+
+    .artifact picture {
         width: var(--artifact-size);
     }
 

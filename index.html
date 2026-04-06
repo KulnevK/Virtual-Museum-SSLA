@@ -47,7 +47,10 @@
 <div id="modal" class="modal">
     <div class="close" onclick="closeModal()">&#10005;</div>
     <div class="modal-content">
-        <img id="modal-img" alt="Изображение экспоната">
+        <picture id="modal-picture" class="modal-picture">
+            <source id="modal-img-webp" type="image/webp" srcset="">
+            <img id="modal-img" alt="Изображение экспоната">
+        </picture>
         <model-viewer id="modal-model" poster="assets/img/exhibits/bust.png" alt="3D-модель экспоната" camera-controls auto-rotate shadow-intensity="1" exposure="1"></model-viewer>
         <div class="modal-text">
             <h2 id="modal-title"></h2>

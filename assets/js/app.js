@@ -4,6 +4,17 @@ const rawMuseumData = window.MUSEUM_DATA || { scenes: [], exhibits: [] };
 const defaultSceneBackground = "assets/img/scenes/newhall1.jpg";
 const defaultDescription = "Описание будет добавлено позже.";
 
+function resolveWebpCompanion(rasterPath) {
+    const path = String(rasterPath || "").trim();
+    if (!path) {
+        return "";
+    }
+
+    const companion = path.replace(/\.(png|jpe?g)$/i, ".webp");
+
+    return companion !== path ? companion : "";
+}
+
 function normalizeMuseumData(rawData) {
     const rawScenes = Array.isArray(rawData?.scenes) ? rawData.scenes : [];
     const rawExhibits = Array.isArray(rawData?.exhibits) ? rawData.exhibits : [];
@@ -90,6 +101,11 @@ function normalizeMuseumData(rawData) {
         const title = String(exhibit.title || exhibit.label || id).trim() || id;
         const label = String(exhibit.label || title).trim() || title;
 
+        let imageWebp = String(exhibit.imageWebp || "").trim();
+        if (!imageWebp) {
+            imageWebp = resolveWebpCompanion(image);
+        }
+
         result.push({
             ...exhibit,
             id,
@@ -98,6 +114,7 @@ function normalizeMuseumData(rawData) {
             label,
             title,
             image,
+            imageWebp,
             poster: String(exhibit.poster || "").trim(),
             model: String(exhibit.model || "").trim(),
             artifactClass: String(exhibit.artifactClass || "").trim(),
@@ -287,11 +304,16 @@ function renderArtifactCard(exhibit) {
     }
 
     const imageClassAttr = imageClasses.length ? ` class="${escapeHtml(imageClasses.join(" "))}"` : "";
+    const alt = escapeHtml(exhibit.title);
+    const imgTag = `<img${imageClassAttr} src="${escapeHtml(exhibit.image)}" alt="${alt}" loading="lazy" decoding="async">`;
+    const pictureInner = exhibit.imageWebp
+        ? `<picture><source type="image/webp" srcset="${escapeHtml(exhibit.imageWebp)}">${imgTag}</picture>`
+        : imgTag;
 
     return `
         <div class="${escapeHtml(artifactClasses.join(" "))}" data-type="${escapeHtml(exhibit.id)}" data-scene-id="${escapeHtml(exhibit.sceneId)}">
             <div class="info">${escapeHtml(exhibit.label || exhibit.title)}</div>
-            <img${imageClassAttr} src="${escapeHtml(exhibit.image)}" alt="${escapeHtml(exhibit.title)}" loading="lazy" decoding="async">
+            ${pictureInner}
         </div>
     `;
 }
@@ -405,17 +427,26 @@ function openArtifactModal(type) {
     applyResponsiveSceneMode();
 
     const modalImage = document.getElementById("modal-img");
+    const modalSource = document.getElementById("modal-img-webp");
     const modalModel = document.getElementById("modal-model");
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
     const isLocalFile = window.location.protocol === "file:";
     const has3DModel = Boolean(exhibit.model);
+    const posterBase = exhibit.poster || exhibit.image;
+    const posterForModel = resolveWebpCompanion(posterBase) || posterBase;
 
     modalImage.style.display = "block";
     modalModel.style.display = "none";
     modalModel.removeAttribute("src");
-    modalModel.setAttribute("poster", exhibit.poster || exhibit.image);
+    modalModel.setAttribute("poster", posterForModel);
     modalImage.src = exhibit.image;
+
+    if (exhibit.imageWebp && modalSource) {
+        modalSource.setAttribute("srcset", exhibit.imageWebp);
+    } else if (modalSource) {
+        modalSource.removeAttribute("srcset");
+    }
 
     if (has3DModel && !isLocalFile) {
         modalImage.style.display = "none";
@@ -436,10 +467,15 @@ function openArtifactModal(type) {
 
 function closeModal() {
     const modalImage = document.getElementById("modal-img");
+    const modalSource = document.getElementById("modal-img-webp");
     const modalModel = document.getElementById("modal-model");
 
     document.getElementById("modal").style.display = "none";
     modalImage.style.display = "block";
+    if (modalSource) {
+        modalSource.removeAttribute("srcset");
+    }
+
     modalModel.style.display = "none";
     modalModel.removeAttribute("src");
 
