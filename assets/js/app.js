@@ -15,6 +15,17 @@ function resolveWebpCompanion(rasterPath) {
     return companion !== path ? companion : "";
 }
 
+function resolveThumbCompanion(rasterPath) {
+    const path = String(rasterPath || "").trim();
+    if (!path) {
+        return "";
+    }
+
+    const companion = path.replace(/(\.[^./\\]+)$/i, "_thumb$1");
+
+    return companion !== path ? companion : "";
+}
+
 function normalizeMuseumData(rawData) {
     const rawScenes = Array.isArray(rawData?.scenes) ? rawData.scenes : [];
     const rawExhibits = Array.isArray(rawData?.exhibits) ? rawData.exhibits : [];
@@ -101,9 +112,21 @@ function normalizeMuseumData(rawData) {
         const title = String(exhibit.title || exhibit.label || id).trim() || id;
         const label = String(exhibit.label || title).trim() || title;
 
+        const imageFull = String(exhibit.imageFull || image).trim() || image;
+
         let imageWebp = String(exhibit.imageWebp || "").trim();
         if (!imageWebp) {
-            imageWebp = resolveWebpCompanion(image);
+            imageWebp = resolveWebpCompanion(imageFull);
+        }
+
+        let imageThumb = String(exhibit.imageThumb || "").trim();
+        if (!imageThumb) {
+            imageThumb = resolveThumbCompanion(imageFull) || imageFull;
+        }
+
+        let imageThumbWebp = String(exhibit.imageThumbWebp || "").trim();
+        if (!imageThumbWebp) {
+            imageThumbWebp = resolveWebpCompanion(imageThumb);
         }
 
         result.push({
@@ -113,8 +136,10 @@ function normalizeMuseumData(rawData) {
             slot,
             label,
             title,
-            image,
+            image: imageFull,
             imageWebp,
+            imageThumb,
+            imageThumbWebp,
             poster: String(exhibit.poster || "").trim(),
             model: String(exhibit.model || "").trim(),
             artifactClass: String(exhibit.artifactClass || "").trim(),
@@ -305,9 +330,11 @@ function renderArtifactCard(exhibit) {
 
     const imageClassAttr = imageClasses.length ? ` class="${escapeHtml(imageClasses.join(" "))}"` : "";
     const alt = escapeHtml(exhibit.title);
-    const imgTag = `<img${imageClassAttr} src="${escapeHtml(exhibit.image)}" alt="${alt}" loading="lazy" decoding="async">`;
-    const pictureInner = exhibit.imageWebp
-        ? `<picture><source type="image/webp" srcset="${escapeHtml(exhibit.imageWebp)}">${imgTag}</picture>`
+    const thumbSrc = exhibit.imageThumb || exhibit.image;
+    const thumbWebpSrc = exhibit.imageThumbWebp;
+    const imgTag = `<img${imageClassAttr} src="${escapeHtml(thumbSrc)}" alt="${alt}" loading="lazy" decoding="async">`;
+    const pictureInner = thumbWebpSrc
+        ? `<picture><source type="image/webp" srcset="${escapeHtml(thumbWebpSrc)}">${imgTag}</picture>`
         : imgTag;
 
     return `
