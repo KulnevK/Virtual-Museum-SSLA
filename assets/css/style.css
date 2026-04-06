@@ -476,7 +476,7 @@ select {
 .home {
     position:fixed;
     inset:0;
-    background:url('../img/welcome/ghall.png') center/cover no-repeat;
+    background:url('../img/welcome/ghall.webp') center/cover no-repeat;
     color:white;
     display:flex;
     flex-direction:column;
