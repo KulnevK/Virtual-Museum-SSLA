@@ -427,6 +427,18 @@ select {
     box-shadow:none;
 }
 
+.modal-picture {
+    cursor:zoom-in;
+}
+
+.modal-picture.is-zoomed {
+    cursor:grab;
+}
+
+.modal-picture.is-zoomed:active {
+    cursor:grabbing;
+}
+
 #modal-model {
     display:none;
     min-height:320px;
@@ -461,6 +473,32 @@ select {
     font-weight:700;
     font-size:clamp(34px, 4vw, 52px);
     line-height:1;
+}
+
+.modal-zoom-btn {
+    margin-top:20px;
+    padding:10px 18px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,0.25);
+    background:rgba(15,23,42,0.85);
+    color:white;
+    font-size:14px;
+    font-weight:500;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    cursor:pointer;
+    transition:background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-zoom-btn:hover {
+    background:rgba(30,41,59,0.95);
+    transform:translateY(-1px);
+    box-shadow:0 16px 32px rgba(0,0,0,0.45);
+}
+
+.modal-zoom-btn:focus-visible {
+    outline:2px solid rgba(248,250,252,0.95);
+    outline-offset:2px;
 }
 
 .close {

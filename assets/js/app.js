@@ -175,6 +175,105 @@ let catalogItems = [];
 let scenes = [];
 let mobileSceneButtons = [];
 let currentIndex = 0;
+let currentExhibit = null;
+
+const modalZoomState = {
+    scale: 1,
+    x: 0,
+    y: 0,
+    isPanning: false,
+    lastClientX: 0,
+    lastClientY: 0
+};
+
+function applyModalZoomTransform() {
+    const modalImage = document.getElementById("modal-img");
+    const modalPicture = document.getElementById("modal-picture");
+
+    if (!modalImage || !modalPicture) {
+        return;
+    }
+
+    const { scale, x, y } = modalZoomState;
+    modalImage.style.transformOrigin = "center center";
+    modalImage.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${scale})`;
+    modalPicture.classList.toggle("is-zoomed", scale > 1);
+}
+
+function resetModalZoom() {
+    modalZoomState.scale = 1;
+    modalZoomState.x = 0;
+    modalZoomState.y = 0;
+    modalZoomState.isPanning = false;
+    applyModalZoomTransform();
+}
+
+function setupModalZoom() {
+    const modalImage = document.getElementById("modal-img");
+    const modalPicture = document.getElementById("modal-picture");
+
+    if (!modalImage || !modalPicture) {
+        return;
+    }
+
+    // Клик — переключение между 1x и 2x
+    modalPicture.addEventListener("click", event => {
+        // Не мешаем клику по 3D-модели, она в другом блоке
+        if (event.target !== modalImage && event.target !== modalPicture) {
+            return;
+        }
+
+        if (modalZoomState.scale === 1) {
+            modalZoomState.scale = 2;
+        } else {
+            modalZoomState.scale = 1;
+            modalZoomState.x = 0;
+            modalZoomState.y = 0;
+        }
+
+        applyModalZoomTransform();
+    });
+
+    // Панорамирование мышью
+    modalPicture.addEventListener("mousedown", event => {
+        if (modalZoomState.scale === 1 || event.button !== 0) {
+            return;
+        }
+
+        modalZoomState.isPanning = true;
+        modalZoomState.lastClientX = event.clientX;
+        modalZoomState.lastClientY = event.clientY;
+        event.preventDefault();
+    });
+
+    window.addEventListener("mousemove", event => {
+        if (!modalZoomState.isPanning || modalZoomState.scale === 1) {
+            return;
+        }
+
+        const dx = event.clientX - modalZoomState.lastClientX;
+        const dy = event.clientY - modalZoomState.lastClientY;
+        modalZoomState.lastClientX = event.clientX;
+        modalZoomState.lastClientY = event.clientY;
+
+        modalZoomState.x += dx;
+        modalZoomState.y += dy;
+        applyModalZoomTransform();
+    });
+
+    window.addEventListener("mouseup", () => {
+        modalZoomState.isPanning = false;
+    });
+
+    // Сброс по двойному клику
+    modalPicture.addEventListener("dblclick", event => {
+        if (event.target !== modalImage && event.target !== modalPicture) {
+            return;
+        }
+
+        resetModalZoom();
+    });
+}
 
 const mobileSceneSelections = new Map();
 
@@ -450,6 +549,9 @@ function openArtifactModal(type) {
         return;
     }
 
+    currentExhibit = exhibit;
+    resetModalZoom();
+
     mobileSceneSelections.set(exhibit.sceneId, exhibit.id);
     applyResponsiveSceneMode();
 
@@ -506,8 +608,22 @@ function closeModal() {
     modalModel.style.display = "none";
     modalModel.removeAttribute("src");
 
+    resetModalZoom();
+
     if (document.getElementById("home").style.display === "none") {
         homeButton.classList.remove("hidden");
+    }
+}
+
+function openArtifactImageInNewTab() {
+    if (!currentExhibit || !currentExhibit.image) {
+        return;
+    }
+
+    try {
+        window.open(currentExhibit.image, "_blank", "noopener,noreferrer");
+    } catch (_error) {
+        // В некоторых средах window.open может быть заблокирован.
     }
 }
 
@@ -650,4 +766,6 @@ document.addEventListener("keydown", event => {
         showScene(currentIndex - 1);
     }
 });
+
+setupModalZoom();
 
