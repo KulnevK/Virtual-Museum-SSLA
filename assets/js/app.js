@@ -129,6 +129,9 @@ function normalizeMuseumData(rawData) {
             imageThumbWebp = resolveWebpCompanion(imageThumb);
         }
 
+        const model = String(exhibit.model || "").trim();
+        const has3D = Boolean(model);
+
         result.push({
             ...exhibit,
             id,
@@ -141,7 +144,8 @@ function normalizeMuseumData(rawData) {
             imageThumb,
             imageThumbWebp,
             poster: String(exhibit.poster || "").trim(),
-            model: String(exhibit.model || "").trim(),
+            model,
+            has3D,
             artifactClass: String(exhibit.artifactClass || "").trim(),
             imageClass: String(exhibit.imageClass || "").trim(),
             searchTerms: Array.isArray(exhibit.searchTerms)
@@ -438,6 +442,7 @@ function renderArtifactCard(exhibit) {
 
     return `
         <div class="${escapeHtml(artifactClasses.join(" "))}" data-type="${escapeHtml(exhibit.id)}" data-scene-id="${escapeHtml(exhibit.sceneId)}">
+            ${exhibit.has3D ? '<span class="artifact-3d-badge" aria-label="Доступен просмотр в 3D">3D</span>' : ""}
             <div class="info">${escapeHtml(exhibit.label || exhibit.title)}</div>
             ${pictureInner}
         </div>

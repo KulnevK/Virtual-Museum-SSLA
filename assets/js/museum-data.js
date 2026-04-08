@@ -496,6 +496,7 @@ window.MUSEUM_DATA = {
             label: "Фотоаппарат",
             title: "Фотоаппарат",
             image: "assets/img/exhibits/camera.png",
+            model: "assets/models/camera.glb",
             searchTerms: ["фотоаппарат", "Старт", "Красногорский механический завод", "1958", "1964", "мероприятия"],
             description: "Малоформатный однообъективный зеркальный фотоаппарат «Старт», который производился Красногорским механическим заводом в период с 1958 года по 1964 год.\n\nИспользовался работниками института для фотосъёмки мероприятий и значимых событий института."
         },
@@ -516,6 +517,7 @@ window.MUSEUM_DATA = {
             label: "Радиоприемник «Балтика»",
             title: "Радиоприемник «Балтика»",
             image: "assets/img/exhibits/baltika.png",
+            model: "assets/models/baltika.glb",
             searchTerms: ["Балтика", "радиоприемник", "Познанский", "кабинет ректора", "1950", "1960"],
             description: "«Балтика» — сетевой ламповый радиоприёмник 2-го класса.\n\nБыл одним из атрибутов интерьера в кабинете ректора В.А. Познанского. Характерный элемент интерьера кабинета руководителя вуза 1950–1960-х гг., свидетельство бытовой обстановки того времени."
         },
@@ -546,6 +548,7 @@ window.MUSEUM_DATA = {
             label: "Часы",
             title: "Часы",
             image: "assets/img/exhibits/chasy1.png",
+            model: "assets/models/chasy1.glb",
             searchTerms: ["часы", "СЧЗ", "4 камня", "Демидов", "кабинет ректора", "1964", "1971"],
             description: "Настольные часы с надписью на циферблате «СЧЗ на 4 камня». Использовались в кабинете ректора И.П. Демидова.\n\nЛичная вещь ректора, возглавлявшего институт в период 1964–1971 гг., и характерная деталь интерьера руководителя вуза позднего советского времени."
         },
@@ -566,6 +569,7 @@ window.MUSEUM_DATA = {
             label: "Арифмометр 3D",
             title: "Арифмометр 3D",
             image: "assets/img/exhibits/arifmometr_3d.png",
+            model: "assets/models/arifmometr_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
@@ -576,6 +580,7 @@ window.MUSEUM_DATA = {
             label: "Армейский мешок 3D",
             title: "Армейский мешок 3D",
             image: "assets/img/exhibits/armeyskiy_meshok_3d.png",
+            model: "assets/models/armeyskiy_meshok_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
@@ -586,6 +591,7 @@ window.MUSEUM_DATA = {
             label: "Армейский мешок 3D",
             title: "Армейский мешок 3D",
             image: "assets/img/exhibits/armeyskiy_meshok_3d_2.png",
+            model: "assets/models/armeyskiy_meshok_3d_2.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
@@ -1160,6 +1166,7 @@ window.MUSEUM_DATA = {
             label: "Аппарат для проекции слайдов 3D",
             title: "Аппарат для проекции слайдов 3D",
             image: "assets/img/exhibits/apparat_dlya_proektsii_slaydov_3d.png",
+            model: "assets/models/apparat_dlya_proektsii_slaydov_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
