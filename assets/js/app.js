@@ -180,6 +180,7 @@ let scenes = [];
 let mobileSceneButtons = [];
 let currentIndex = 0;
 let currentExhibit = null;
+let modal3dRequestToken = 0;
 
 const modalZoomState = {
     scale: 1,
@@ -561,16 +562,33 @@ function openArtifactModal(type) {
     applyResponsiveSceneMode();
 
     const modalImage = document.getElementById("modal-img");
+    const modalPicture = document.getElementById("modal-picture");
+    const modal3dWrap = document.getElementById("modal-3d-wrap");
+    const modalImageLoading = document.getElementById("modal-image-loading");
     const modalSource = document.getElementById("modal-img-webp");
     const modalModel = document.getElementById("modal-model");
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
+    const modal3dSpinner = document.getElementById("modal-3d-spinner");
     const isLocalFile = window.location.protocol === "file:";
     const has3DModel = Boolean(exhibit.model);
     const posterBase = exhibit.poster || exhibit.image;
     const posterForModel = resolveWebpCompanion(posterBase) || posterBase;
 
+    if (modalPicture) {
+        modalPicture.style.display = "block";
+    }
+    if (modal3dWrap) {
+        modal3dWrap.style.display = "none";
+    }
+    if (modalImageLoading) {
+        modalImageLoading.style.display = "none";
+        modalImageLoading.textContent = "Загрузка 3D…";
+    }
     modalImage.style.display = "block";
+    if (modal3dSpinner) {
+        modal3dSpinner.style.display = "none";
+    }
     modalModel.style.display = "none";
     modalModel.removeAttribute("src");
     modalModel.setAttribute("poster", posterForModel);
@@ -583,9 +601,50 @@ function openArtifactModal(type) {
     }
 
     if (has3DModel && !isLocalFile) {
-        modalImage.style.display = "none";
+        const requestToken = ++modal3dRequestToken;
+        if (modalImageLoading) {
+            modalImageLoading.style.display = "flex";
+            modalImageLoading.textContent = "Загрузка 3D…";
+        }
+
         modalModel.style.display = "block";
         modalModel.src = exhibit.model;
+
+        const showModel = () => {
+            if (requestToken !== modal3dRequestToken) {
+                return;
+            }
+
+            if (modalImageLoading) {
+                modalImageLoading.style.display = "none";
+            }
+            if (modalPicture) {
+                modalPicture.style.display = "none";
+            }
+            if (modal3dWrap) {
+                modal3dWrap.style.display = "block";
+            }
+        };
+
+        const failModel = () => {
+            if (requestToken !== modal3dRequestToken) {
+                return;
+            }
+
+            if (modal3dWrap) {
+                modal3dWrap.style.display = "none";
+            }
+            if (modalPicture) {
+                modalPicture.style.display = "block";
+            }
+            if (modalImageLoading) {
+                modalImageLoading.style.display = "none";
+            }
+        };
+
+        modalModel.addEventListener("load", showModel, { once: true });
+        modalModel.addEventListener("error", failModel, { once: true });
+        modalModel.addEventListener("model-error", failModel, { once: true });
     }
 
     modalTitle.innerText = exhibit.title;
@@ -601,17 +660,34 @@ function openArtifactModal(type) {
 
 function closeModal() {
     const modalImage = document.getElementById("modal-img");
+    const modalPicture = document.getElementById("modal-picture");
+    const modal3dWrap = document.getElementById("modal-3d-wrap");
+    const modalImageLoading = document.getElementById("modal-image-loading");
     const modalSource = document.getElementById("modal-img-webp");
     const modalModel = document.getElementById("modal-model");
+    const modal3dSpinner = document.getElementById("modal-3d-spinner");
 
     document.getElementById("modal").style.display = "none";
     modalImage.style.display = "block";
+    if (modalPicture) {
+        modalPicture.style.display = "block";
+    }
+    if (modal3dWrap) {
+        modal3dWrap.style.display = "none";
+    }
+    if (modalImageLoading) {
+        modalImageLoading.style.display = "none";
+    }
+    if (modal3dSpinner) {
+        modal3dSpinner.style.display = "none";
+    }
     if (modalSource) {
         modalSource.removeAttribute("srcset");
     }
 
     modalModel.style.display = "none";
     modalModel.removeAttribute("src");
+    modal3dRequestToken++;
 
     resetModalZoom();
 
