@@ -607,7 +607,18 @@ function openArtifactModal(type) {
             modalImageLoading.textContent = "Загрузка 3D…";
         }
 
+        if (modal3dWrap) {
+            // Держим контейнер "живым" для загрузки model-viewer, но исключаем из потока layout.
+            modal3dWrap.style.display = "block";
+            modal3dWrap.style.position = "absolute";
+            modal3dWrap.style.opacity = "0";
+            modal3dWrap.style.pointerEvents = "none";
+            modal3dWrap.style.inset = "0 auto auto 0";
+            modal3dWrap.style.visibility = "hidden";
+        }
+
         modalModel.style.display = "block";
+        modalModel.setAttribute("loading", "eager");
         modalModel.src = exhibit.model;
 
         const showModel = () => {
@@ -623,6 +634,11 @@ function openArtifactModal(type) {
             }
             if (modal3dWrap) {
                 modal3dWrap.style.display = "block";
+                modal3dWrap.style.position = "relative";
+                modal3dWrap.style.opacity = "1";
+                modal3dWrap.style.pointerEvents = "auto";
+                modal3dWrap.style.inset = "auto";
+                modal3dWrap.style.visibility = "visible";
             }
         };
 
@@ -633,6 +649,11 @@ function openArtifactModal(type) {
 
             if (modal3dWrap) {
                 modal3dWrap.style.display = "none";
+                modal3dWrap.style.position = "relative";
+                modal3dWrap.style.opacity = "1";
+                modal3dWrap.style.pointerEvents = "auto";
+                modal3dWrap.style.inset = "auto";
+                modal3dWrap.style.visibility = "visible";
             }
             if (modalPicture) {
                 modalPicture.style.display = "block";
@@ -674,6 +695,11 @@ function closeModal() {
     }
     if (modal3dWrap) {
         modal3dWrap.style.display = "none";
+        modal3dWrap.style.position = "relative";
+        modal3dWrap.style.opacity = "1";
+        modal3dWrap.style.pointerEvents = "auto";
+        modal3dWrap.style.inset = "auto";
+        modal3dWrap.style.visibility = "visible";
     }
     if (modalImageLoading) {
         modalImageLoading.style.display = "none";
