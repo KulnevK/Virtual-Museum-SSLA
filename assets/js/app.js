@@ -621,9 +621,16 @@ function openArtifactModal(type) {
         modalModel.setAttribute("loading", "eager");
         modalModel.src = exhibit.model;
 
+        let settled = false;
+        let watchdogId = null;
+
         const showModel = () => {
-            if (requestToken !== modal3dRequestToken) {
+            if (requestToken !== modal3dRequestToken || settled) {
                 return;
+            }
+            settled = true;
+            if (watchdogId) {
+                window.clearTimeout(watchdogId);
             }
 
             if (modalImageLoading) {
@@ -643,8 +650,12 @@ function openArtifactModal(type) {
         };
 
         const failModel = () => {
-            if (requestToken !== modal3dRequestToken) {
+            if (requestToken !== modal3dRequestToken || settled) {
                 return;
+            }
+            settled = true;
+            if (watchdogId) {
+                window.clearTimeout(watchdogId);
             }
 
             if (modal3dWrap) {
@@ -662,6 +673,15 @@ function openArtifactModal(type) {
                 modalImageLoading.style.display = "none";
             }
         };
+
+        // На некоторых мобильных браузерах событие load может приходить нестабильно.
+        // Чтобы избежать бесконечного "Загрузка 3D...", через таймаут показываем контейнер модели.
+        watchdogId = window.setTimeout(() => {
+            if (requestToken !== modal3dRequestToken || settled) {
+                return;
+            }
+            showModel();
+        }, 20000);
 
         modalModel.addEventListener("load", showModel, { once: true });
         modalModel.addEventListener("error", failModel, { once: true });
