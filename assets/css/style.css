@@ -433,6 +433,7 @@ select {
 }
 
 .modal-3d-wrap {
+    display:none;
     position:relative;
     overflow:hidden;
 }
