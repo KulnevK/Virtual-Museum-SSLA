@@ -3,6 +3,117 @@ const slotOrder = { left: 0, center: 1, right: 2 };
 const rawMuseumData = window.MUSEUM_DATA || { scenes: [], exhibits: [] };
 const defaultSceneBackground = "assets/img/scenes/newhall1.jpg";
 const defaultDescription = "Описание будет добавлено позже.";
+const thematicScenes = [
+    { id: "scene-theme-awards-01", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-02", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-03", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-04", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-05", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-06", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-07", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-08", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-09", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-awards-10", label: "Тематический зал: Ордена и медали", background: "assets/img/scenes/newhall3.jpg", timeline: ["Награды", "История", "Память"], isThematic: true },
+    { id: "scene-theme-books-01", label: "Тематический зал: Книги", background: "assets/img/scenes/newhall2.jpg", timeline: ["Фонд", "Книги", "Архив"], isThematic: true },
+    { id: "scene-theme-books-02", label: "Тематический зал: Книги", background: "assets/img/scenes/newhall2.jpg", timeline: ["Фонд", "Книги", "Архив"], isThematic: true },
+    { id: "scene-theme-books-03", label: "Тематический зал: Книги", background: "assets/img/scenes/newhall2.jpg", timeline: ["Фонд", "Книги", "Архив"], isThematic: true },
+    { id: "scene-theme-books-04", label: "Тематический зал: Книги", background: "assets/img/scenes/newhall2.jpg", timeline: ["Фонд", "Книги", "Архив"], isThematic: true },
+    { id: "scene-theme-books-05", label: "Тематический зал: Книги", background: "assets/img/scenes/newhall2.jpg", timeline: ["Фонд", "Книги", "Архив"], isThematic: true },
+    { id: "scene-theme-books-06", label: "Тематический зал: Книги", background: "assets/img/scenes/newhall2.jpg", timeline: ["Фонд", "Книги", "Архив"], isThematic: true },
+    { id: "scene-theme-audio-01", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-audio-02", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-audio-03", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-audio-04", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-audio-05", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-audio-06", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-audio-07", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-audio-08", label: "Тематический зал: Винил и аудионосители", background: "assets/img/scenes/newhall2.jpg", timeline: ["Винил", "Аудио", "Носители"], isThematic: true },
+    { id: "scene-theme-docs-01", label: "Тематический зал: Удостоверения и документы", background: "assets/img/scenes/newhall1.jpg", timeline: ["Документы", "Архив", "Личные фонды"], isThematic: true },
+    { id: "scene-theme-docs-02", label: "Тематический зал: Удостоверения и документы", background: "assets/img/scenes/newhall1.jpg", timeline: ["Документы", "Архив", "Личные фонды"], isThematic: true },
+    { id: "scene-theme-docs-03", label: "Тематический зал: Удостоверения и документы", background: "assets/img/scenes/newhall1.jpg", timeline: ["Документы", "Архив", "Личные фонды"], isThematic: true },
+    { id: "scene-theme-docs-04", label: "Тематический зал: Удостоверения и документы", background: "assets/img/scenes/newhall1.jpg", timeline: ["Документы", "Архив", "Личные фонды"], isThematic: true }
+];
+const thematicSceneByExhibitId = {
+    medaljapan: "scene-theme-awards-01",
+    medali_70_let_vooruzhennyh_sil: "scene-theme-awards-01",
+    medal_50_let_vooruzhennyh_sil: "scene-theme-awards-01",
+    medal_50_let_vooruzhennyh_sil_sssr: "scene-theme-awards-02",
+    medal_70_let_vooruzhennyh_sil: "scene-theme-awards-02",
+    medal_truzheniku_tyla: "scene-theme-awards-02",
+    medal_truzheniku_tyla_2: "scene-theme-awards-03",
+    medal_georgiya_zhukova: "scene-theme-awards-03",
+    medal_za_doblestnyy_trud_v_vov: "scene-theme-awards-03",
+    medal_stoletiyu_georgiya_zhukova: "scene-theme-awards-04",
+    medalsoc: "scene-theme-awards-04",
+    medalveteran: "scene-theme-awards-04",
+    medalgranitz: "scene-theme-awards-05",
+    medali_50_let_pobedy: "scene-theme-awards-05",
+    medali_60_let_vooruzhennyh_sil: "scene-theme-awards-05",
+    medal_50_let_pobedy: "scene-theme-awards-06",
+    medal_60_let_vooruzhennyh_sil: "scene-theme-awards-06",
+    medal_60_let_vyzvoleniya_respubliki_belarus_ot_nemetsko_fashistskih_za: "scene-theme-awards-06",
+    medal_za_dolgoletniy_dobrosovestnyy_trud: "scene-theme-awards-07",
+    medal_za_vozrozhdenie_kazachestva: "scene-theme-awards-07",
+    medal_za_doblestnyy_trud_v_oznamenovanie_100_letiya_so_dnya_rozhdeniya: "scene-theme-awards-07",
+    orden_za_veru_volyu_i_otechestvo: "scene-theme-awards-08",
+    ordenskaya_knizhka_chermenskiy_ivan: "scene-theme-awards-08",
+    ordenskaya_planka: "scene-theme-awards-08",
+    ordenskaya_planka_2: "scene-theme-awards-09",
+    medali_20_let_s_momenta_vyvoda_sovetskih_voysk_iz_afganistana_40_armiy: "scene-theme-awards-09",
+    medal_60_let_pobedy_vov: "scene-theme-awards-09",
+    medal_zaschitniku_pridnestrovya: "scene-theme-awards-10",
+    ugolovnyy_kodeks: "scene-theme-books-01",
+    kniga: "scene-theme-books-01",
+    kniga_2: "scene-theme-books-01",
+    kniga_3: "scene-theme-books-02",
+    kniga_4: "scene-theme-books-02",
+    kniga_5: "scene-theme-books-02",
+    kniga_6: "scene-theme-books-03",
+    kniga_7: "scene-theme-books-03",
+    kniga_8: "scene-theme-books-03",
+    kniga_9: "scene-theme-books-04",
+    kniga_10: "scene-theme-books-04",
+    kniga_11: "scene-theme-books-04",
+    kniga_stanovlenie_i_razvitie_sovetskogo_ugolovnogo_zakonodatelstva: "scene-theme-books-05",
+    kniga_pochetnyh_gostey: "scene-theme-books-05",
+    zhurnal: "scene-theme-books-05",
+    sbornik_nauchnyh_rabot: "scene-theme-books-06",
+    sbornik_pesen: "scene-theme-books-06",
+    plastinka: "scene-theme-audio-01",
+    plastinka_2: "scene-theme-audio-01",
+    plastinka_3: "scene-theme-audio-01",
+    plastinka_4: "scene-theme-audio-02",
+    plastinka_5: "scene-theme-audio-02",
+    plastinka_6: "scene-theme-audio-02",
+    plastinka_7: "scene-theme-audio-03",
+    plastinka_8: "scene-theme-audio-03",
+    plastinka_9: "scene-theme-audio-03",
+    plastinka_10: "scene-theme-audio-04",
+    plastinka_11: "scene-theme-audio-04",
+    cdvinyl: "scene-theme-audio-04",
+    kasseta: "scene-theme-audio-05",
+    kasseta_2: "scene-theme-audio-05",
+    kasseta_3: "scene-theme-audio-05",
+    kasseta_4: "scene-theme-audio-06",
+    kasseta_5: "scene-theme-audio-06",
+    kasseta_6: "scene-theme-audio-06",
+    kasseta_7: "scene-theme-audio-07",
+    kasseta_osvobozhdenie_bitva_za_berlin: "scene-theme-audio-07",
+    kasseta_den_nauki: "scene-theme-audio-07",
+    kassety: "scene-theme-audio-08",
+    udostovstud: "scene-theme-docs-01",
+    udostoverenudar: "scene-theme-docs-01",
+    udostoverenie_oon_baytin_m_i_60_let_obrazovaniya_onn: "scene-theme-docs-01",
+    udostoverenie_komissiya_po_borbe_s_organizovannoy_prestupnostyu_i_korr: "scene-theme-docs-02",
+    udostoverenie_ministra_vysshego_i_srednego_spetsialnogo_obrazovanie_rs: "scene-theme-docs-02",
+    zachetnaya_knizhka: "scene-theme-docs-02",
+    zachetnaya_knizhka_2: "scene-theme-docs-03",
+    svidetelstvo: "scene-theme-docs-03",
+    diplom: "scene-theme-docs-03",
+    attekstat_dotsenta: "scene-theme-docs-04",
+    attestat_dotsenta: "scene-theme-docs-04",
+    attestat_dotsenta_2: "scene-theme-docs-04"
+};
 
 function resolveWebpCompanion(rasterPath) {
     const path = String(rasterPath || "").trim();
@@ -27,7 +138,8 @@ function resolveThumbCompanion(rasterPath) {
 }
 
 function normalizeMuseumData(rawData) {
-    const rawScenes = Array.isArray(rawData?.scenes) ? rawData.scenes : [];
+    const rawBaseScenes = Array.isArray(rawData?.scenes) ? rawData.scenes : [];
+    const rawScenes = [...rawBaseScenes, ...thematicScenes];
     const rawExhibits = Array.isArray(rawData?.exhibits) ? rawData.exhibits : [];
     const sceneIds = new Set();
     const exhibitIds = new Set();
@@ -65,7 +177,8 @@ function normalizeMuseumData(rawData) {
             label: String(scene.label || `Период ${result.length + 1}`).trim(),
             background: String(scene.background || defaultSceneBackground).trim() || defaultSceneBackground,
             timeline,
-            note: scene.note ? String(scene.note).trim() : ""
+            note: scene.note ? String(scene.note).trim() : "",
+            isThematic: Boolean(scene.isThematic || String(id).startsWith("scene-theme-"))
         });
 
         return result;
@@ -90,7 +203,8 @@ function normalizeMuseumData(rawData) {
             return result;
         }
 
-        const sceneId = String(exhibit.sceneId || "").trim();
+        const preferredSceneId = thematicSceneByExhibitId[id] || exhibit.sceneId;
+        const sceneId = String(preferredSceneId || "").trim();
         if (!validSceneIds.has(sceneId)) {
             console.warn(`[museum] Экспонат ${id} пропущен: неизвестный sceneId ${sceneId || "<empty>"}.`);
             return result;
@@ -157,7 +271,10 @@ function normalizeMuseumData(rawData) {
         return result;
     }, []);
 
-    return { scenes, exhibits };
+    const usedSceneIds = new Set(exhibits.map(exhibit => exhibit.sceneId));
+    const nonEmptyScenes = scenes.filter(scene => usedSceneIds.has(scene.id));
+
+    return { scenes: nonEmptyScenes, exhibits };
 }
 
 const museumData = normalizeMuseumData(rawMuseumData);
@@ -459,7 +576,7 @@ function renderScene(scene, index) {
         : "";
 
     return `
-        <section class="scene${!placementsMarkup ? " scene-empty" : ""}" data-scene-id="${escapeHtml(scene.id)}" data-scene-index="${index}" style="background-image:url('${escapeHtml(scene.background)}')">
+        <section class="scene${scene.isThematic ? " scene-thematic" : ""}${!placementsMarkup ? " scene-empty" : ""}" data-scene-id="${escapeHtml(scene.id)}" data-scene-index="${index}" style="background-image:url('${escapeHtml(scene.background)}')">
             <div class="scene-era">${escapeHtml(scene.label)}</div>
             <div class="path">${renderTimeline(scene)}</div>
             ${placementsMarkup}

@@ -467,6 +467,7 @@ window.MUSEUM_DATA = {
             label: "Походная фляга",
             title: "Походная фляга",
             image: "assets/img/exhibits/flyaga.png",
+            model: "assets/models/flyaga.glb",
             searchTerms: ["война", "фляга", "ополченец", "1941"],
             description: "Предмет времен Великой Отечественной войны. Выполнена из алюминия, окрашена в цвет «хаки», имеет откидной механизм.\n\nПринадлежала студенту-ополченцу 1941 года, который ушёл на фронт с третьего курса института и не вернулся.\n\nПередана в музей его одногруппниками в 1960-е годы. Данный мемориальный предмет олицетворяет трагическую судьбу студентов, не вернувшихся с войны, выступает как символ жертвенности во имя Победы над врагом."
         },
@@ -581,7 +582,6 @@ window.MUSEUM_DATA = {
             label: "Армейский мешок 3D",
             title: "Армейский мешок 3D",
             image: "assets/img/exhibits/armeyskiy_meshok_3d.png",
-            model: "assets/models/armeyskiy_meshok_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
@@ -592,7 +592,6 @@ window.MUSEUM_DATA = {
             label: "Армейский мешок 3D",
             title: "Армейский мешок 3D",
             image: "assets/img/exhibits/armeyskiy_meshok_3d_2.png",
-            model: "assets/models/armeyskiy_meshok_3d_2.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
@@ -653,6 +652,7 @@ window.MUSEUM_DATA = {
             label: "Каска 3D",
             title: "Каска 3D",
             image: "assets/img/exhibits/kaska_3d.png",
+            model: "assets/models/kaska_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
@@ -663,6 +663,7 @@ window.MUSEUM_DATA = {
             label: "Каска 3D",
             title: "Каска 3D",
             image: "assets/img/exhibits/kaska_3d_2.png",
+            model: "assets/models/kaska_3d_2.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1930 - 1970» на основании его названия."
         },
@@ -957,6 +958,7 @@ window.MUSEUM_DATA = {
             label: "Сувенир Ю.А. Гагарина",
             title: "Настольный сувенир СССР «Место приземления Ю.А. Гагарина»",
             image: "assets/img/exhibits/gagarin.png",
+            model: "assets/models/gagarin.glb",
             searchTerms: ["Гагарин", "сувенир", "космос", "приземление", "1996", "СССР"],
             description: "Основная часть выполнена из пластика, постамент из дерева. Имеет элемент из зеленого пластика.\n\nПередана в дар Академии Народным музеем Ю.А. Гагарина в 1996 году в честь 35-летия полета Ю.А. Гагарина в космос."
         },
@@ -1519,6 +1521,7 @@ window.MUSEUM_DATA = {
             label: "Кассетный магнитофон 3D",
             title: "Кассетный магнитофон 3D",
             image: "assets/img/exhibits/kassetnyy_magnitofon_3d.png",
+            model: "assets/models/kassetnyy_magnitofon_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
@@ -1539,6 +1542,7 @@ window.MUSEUM_DATA = {
             label: "Катушечный магнитофон 3D",
             title: "Катушечный магнитофон 3D",
             image: "assets/img/exhibits/katushechnyy_magnitofon_3d.png",
+            model: "assets/models/katushechnyy_magnitofon_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
@@ -1549,6 +1553,7 @@ window.MUSEUM_DATA = {
             label: "Кинопроектор 3D",
             title: "Кинопроектор 3D",
             image: "assets/img/exhibits/kinoproektor_3d.png",
+            model: "assets/models/kinoproektor_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
@@ -1699,6 +1704,7 @@ window.MUSEUM_DATA = {
             label: "Коробка 3D",
             title: "Коробка 3D",
             image: "assets/img/exhibits/korobka_3d.png",
+            model: "assets/models/korobka_3d.glb",
             searchTerms: [],
             description: "Описание в разработке. Предмет временно размещён в периоде «1970 - 2000» на основании его названия."
         },
@@ -2380,6 +2386,7 @@ window.MUSEUM_DATA = {
             label: "Графин",
             title: "Графин",
             image: "assets/img/exhibits/grafin.png",
+            model: "assets/models/grafin.glb",
             searchTerms: ["графин", "хрусталь", "Чехословацкая Социалистическая Республика", "международное сотрудничество", "1978"],
             description: "Графин из хрусталя с выступающими элементами.\n\nПодарок институту от делегации Чехословацкой Социалистической Республики, посетившей институт в 1978 году в рамках программы международного сотрудничества. Это предмет, свидетельствующий о международных связях СЮИ в советский период."
         },
