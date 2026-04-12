@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --font-ui:"Manrope", "Segoe UI", Arial, sans-serif;
     --font-display:"Cormorant Garamond", "Times New Roman", serif;
 }
@@ -547,6 +547,11 @@ select {
     width:50%;
     font-size:18px;
     line-height:1.6;
+}
+
+/* Сохраняем переносы в тексте описания (описание / историческая связь). */
+.modal-text #modal-desc {
+    white-space:pre-wrap;
 }
 
 .modal-text h2 {
