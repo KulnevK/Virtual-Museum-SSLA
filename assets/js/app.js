@@ -178,7 +178,6 @@ const thematicHallConfigs = [
             "znachok_chkv",
             "pozdravitelnaya_otkrytka",
             "pozdravitelnaya_tablichka_v_svyazi_s_yubileem",
-            "pozdravitelnaya_tablichka_v_svyazi_s_yubileem_2",
             "syui_v_pamyat_o_vstreche_vypusknikov_1947_goda_ot_vypusknitsy_zinich_3",
             "suvenir",
             "rsv",
@@ -275,10 +274,7 @@ const thematicHallConfigs = [
             "esenin",
             "statuetka",
             "shkatulk",
-            "portfel_rektora_professora_v_a_poznanskogo_3d",
             "korobka_3d",
-            "kruzhka_sinyaya_3d",
-            "kuvshin_3d",
             "grafin",
             "kruzhka",
             "exposiz",
@@ -354,9 +350,25 @@ function buildThematicPlan() {
 
         exhibitsByPeriod.forEach(periodGroup => {
             const sceneTemplate = periodGroup.sourceScene || {};
+            const periodExhibits = periodGroup.exhibits.slice();
 
-            for (let index = 0; index < periodGroup.exhibits.length; index += timelineSlots.length) {
-                const sceneExhibits = periodGroup.exhibits.slice(index, index + timelineSlots.length);
+            // Балансируем разбиение, чтобы в тематическом зале не появлялась сцена из 1 экспоната.
+            // Пример: 4 экспоната -> 2+2 вместо 3+1; 7 -> 3+2+2 вместо 3+3+1.
+            if (periodExhibits.length > timelineSlots.length && periodExhibits.length % timelineSlots.length === 1) {
+                const last = periodExhibits.pop();
+                const beforeLast = periodExhibits.pop();
+
+                if (beforeLast) {
+                    periodExhibits.push(beforeLast);
+                }
+
+                if (last) {
+                    periodExhibits.push(last);
+                }
+            }
+
+            for (let index = 0; index < periodExhibits.length; index += timelineSlots.length) {
+                const sceneExhibits = periodExhibits.slice(index, index + timelineSlots.length);
                 const sceneId = `scene-theme-${config.key}-${String(++sceneNumber).padStart(2, "0")}`;
                 const sceneSlots = balancedSlotsByCount[sceneExhibits.length] || timelineSlots;
 
@@ -556,6 +568,28 @@ function normalizeMuseumData(rawData) {
 const museumData = normalizeMuseumData(rawMuseumData);
 const sceneMap = new Map(museumData.scenes.map(scene => [scene.id, scene]));
 const exhibitMap = new Map(museumData.exhibits.map(exhibit => [exhibit.id, exhibit]));
+const compactPairSceneIndexesByHall = {
+    souvenirs: new Set([1]),
+    technology: new Set([3]),
+    military: new Set([8]),
+    sculpture: new Set([1, 5, 6])
+};
+const thematicSceneCountByHall = museumData.scenes.reduce((map, scene) => {
+    if (!scene?.isThematic) {
+        return map;
+    }
+
+    const match = String(scene.id || "").match(/^scene-theme-([a-z0-9_-]+)-(\d+)$/i);
+    if (!match) {
+        return map;
+    }
+
+    const hallKey = match[1];
+    const sceneNumber = Number(match[2]);
+    const currentMax = map.get(hallKey) || 0;
+    map.set(hallKey, Math.max(currentMax, sceneNumber));
+    return map;
+}, new Map());
 
 const catalogPanel = document.getElementById("catalog-panel");
 const catalogOverlay = document.getElementById("catalog-overlay");
@@ -732,8 +766,53 @@ function getSceneExhibits(sceneId) {
         .sort((a, b) => (slotOrder[a.slot] ?? 99) - (slotOrder[b.slot] ?? 99));
 }
 
+function getRenderableSceneExhibits(scene) {
+    return getSceneExhibits(scene.id);
+}
+
+function getThematicSceneMeta(scene) {
+    if (!scene?.isThematic) {
+        return null;
+    }
+
+    const match = String(scene.id || "").match(/^scene-theme-([a-z0-9_-]+)-(\d+)$/i);
+    if (!match) {
+        return null;
+    }
+
+    return {
+        hallKey: match[1],
+        sceneNumber: Number(match[2])
+    };
+}
+
+function shouldUseCompactPairLayout(scene, sceneExhibits) {
+    if (sceneExhibits.length !== 2) {
+        return false;
+    }
+
+    const meta = getThematicSceneMeta(scene);
+    if (!meta) {
+        return false;
+    }
+
+    const configuredNumbers = compactPairSceneIndexesByHall[meta.hallKey];
+    if (configuredNumbers?.has(meta.sceneNumber)) {
+        return true;
+    }
+
+    if (meta.hallKey === "paintings") {
+        const hallSceneTotal = thematicSceneCountByHall.get(meta.hallKey) || 0;
+        return hallSceneTotal > 0 && meta.sceneNumber === hallSceneTotal;
+    }
+
+    return false;
+}
+
 function getInitialSceneExhibit(sceneId) {
-    return getSceneExhibits(sceneId)[0]?.id || "";
+    const scene = getSceneById(sceneId);
+    const sceneExhibits = scene ? getRenderableSceneExhibits(scene) : getSceneExhibits(sceneId);
+    return sceneExhibits[0]?.id || "";
 }
 
 function initializeMobileSceneSelections() {
@@ -878,15 +957,11 @@ function renderCatalog() {
 }
 
 function renderTimeline(scene) {
-    const pointsMarkup = timelineSlots
-        .map(slot => `<span class="timeline-point ${slot}"></span>`)
-        .join("");
-
     const datesMarkup = timelineSlots
         .map((slot, index) => `<span class="timeline-date ${slot}">${escapeHtml(scene.timeline?.[index] || "")}</span>`)
         .join("");
 
-    return pointsMarkup + datesMarkup;
+    return datesMarkup;
 }
 
 function renderMobileFocusPicker(scene, sceneExhibits) {
@@ -915,6 +990,10 @@ function renderArtifactCard(exhibit, options = {}) {
     const artifactClasses = ["artifact", `slot-${effectiveSlot}`];
     const imageClasses = [];
 
+    if (exhibit.id === "stul_derevyannyy_s_rezboy_3d") {
+        artifactClasses.push("artifact-frame-chair");
+    }
+
     if (exhibit.artifactClass) {
         artifactClasses.push(exhibit.artifactClass);
     }
@@ -942,8 +1021,30 @@ function renderArtifactCard(exhibit, options = {}) {
 }
 
 function renderScene(scene, index) {
-    const sceneExhibits = getSceneExhibits(scene.id);
-    const sceneDisplaySlots = sceneExhibits.length === 1 ? ["center"] : [];
+    const sceneExhibits = getRenderableSceneExhibits(scene);
+    const isCompactPairLayout = shouldUseCompactPairLayout(scene, sceneExhibits);
+    let sceneDisplaySlots = [];
+
+    if (sceneExhibits.length === 1) {
+        sceneDisplaySlots = ["center"];
+    } else if (sceneExhibits.length === 2) {
+        const currentSlots = sceneExhibits.map(exhibit => exhibit.slot);
+
+        if (currentSlots[0] === "center" && currentSlots[1] === "right") {
+            sceneDisplaySlots = ["left", "center"];
+        } else if (currentSlots[0] === "left" && currentSlots[1] === "right") {
+            sceneDisplaySlots = ["left", "right"];
+        } else if (currentSlots[0] === "left" && currentSlots[1] === "center") {
+            sceneDisplaySlots = ["left", "center"];
+        } else {
+            sceneDisplaySlots = ["left", "center"];
+        }
+    }
+
+    if (isCompactPairLayout) {
+        sceneDisplaySlots = ["left", "right"];
+    }
+
     const placementsMarkup = sceneExhibits
         .map((exhibit, exhibitIndex) => renderArtifactCard(exhibit, { slot: sceneDisplaySlots[exhibitIndex] }))
         .join("");
@@ -953,7 +1054,7 @@ function renderScene(scene, index) {
         : "";
 
     return `
-        <section class="scene${scene.isThematic ? " scene-thematic" : ""}${!placementsMarkup ? " scene-empty" : ""}${sceneExhibits.length === 1 ? " scene-single-artifact" : ""}" data-scene-id="${escapeHtml(scene.id)}" data-scene-index="${index}" style="background-image:url('${escapeHtml(scene.background)}')">
+        <section class="scene${scene.isThematic ? " scene-thematic" : ""}${!placementsMarkup ? " scene-empty" : ""}${sceneExhibits.length === 1 ? " scene-single-artifact" : ""}${isCompactPairLayout ? " scene-two-artifacts scene-two-artifacts-compact" : ""}" data-scene-id="${escapeHtml(scene.id)}" data-scene-index="${index}" style="background-image:url('${escapeHtml(scene.background)}')">
             <div class="scene-era">${escapeHtml(scene.hallTitle || scene.label)}</div>
             <div class="path">${renderTimeline(scene)}</div>
             ${placementsMarkup}
@@ -1006,7 +1107,8 @@ function applyResponsiveSceneMode() {
 
     scenes.forEach(scene => {
         const sceneId = scene.dataset.sceneId;
-        const sceneExhibits = getSceneExhibits(sceneId);
+        const sceneModel = getSceneById(sceneId);
+        const sceneExhibits = sceneModel ? getRenderableSceneExhibits(sceneModel) : getSceneExhibits(sceneId);
         const hasExhibits = sceneExhibits.length > 0;
         const activeType = mobileSceneSelections.get(sceneId) || getInitialSceneExhibit(sceneId);
         const enableFocusMode = useMobileFocus && hasExhibits;
@@ -1056,6 +1158,7 @@ function openArtifactModal(type) {
     applyResponsiveSceneMode();
 
     const modalImage = document.getElementById("modal-img");
+    const modalElement = document.getElementById("modal");
     const modalPicture = document.getElementById("modal-picture");
     const modal3dWrap = document.getElementById("modal-3d-wrap");
     const modalImageLoading = document.getElementById("modal-image-loading");
@@ -1184,16 +1287,22 @@ function openArtifactModal(type) {
 
     modalTitle.innerText = exhibit.title;
     modalDesc.innerText = exhibit.description || defaultDescription;
+    if (modalElement) {
+        modalElement.classList.toggle("modal-chair-focus", exhibit.id === "stul_derevyannyy_s_rezboy_3d");
+    }
 
     if (has3DModel && isLocalFile) {
         modalDesc.innerText += " 3D-модель откроется после запуска сайта через локальный сервер или хостинг, а не напрямую как file:// файл.";
     }
 
-    document.getElementById("modal").style.display = "block";
+    if (modalElement) {
+        modalElement.style.display = "block";
+    }
     homeButton.classList.add("hidden");
 }
 
 function closeModal() {
+    const modalElement = document.getElementById("modal");
     const modalImage = document.getElementById("modal-img");
     const modalPicture = document.getElementById("modal-picture");
     const modal3dWrap = document.getElementById("modal-3d-wrap");
@@ -1202,7 +1311,10 @@ function closeModal() {
     const modalModel = document.getElementById("modal-model");
     const modal3dSpinner = document.getElementById("modal-3d-spinner");
 
-    document.getElementById("modal").style.display = "none";
+    if (modalElement) {
+        modalElement.style.display = "none";
+        modalElement.classList.remove("modal-chair-focus");
+    }
     modalImage.style.display = "block";
     if (modalPicture) {
         modalPicture.style.display = "block";

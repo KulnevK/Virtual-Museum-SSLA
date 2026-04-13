@@ -97,18 +97,6 @@ select {
 }
 
 /* Timeline markers */
-.path .timeline-point {
-    position:absolute;
-    top:-6px;
-    width:14px;
-    height:14px;
-    background:white;
-    border-radius:50%;
-    box-shadow:0 0 10px white;
-    z-index:1;
-    transform:translateX(-50%);
-}
-
 .path .timeline-date.left { left:var(--timeline-left); }
 .path .timeline-date.center { left:var(--timeline-center); }
 .path .timeline-date.right { left:var(--timeline-right); }
@@ -125,25 +113,9 @@ select {
     transform:translateX(-50%);
 }
 
-.path .timeline-point.left { left:var(--timeline-left); }
-.path .timeline-point.center { left:var(--timeline-center); }
-.path .timeline-point.right { left:var(--timeline-right); }
-
 .scene.active .path::after {
     opacity:0.95;
     animation:timelineTravel 2.8s ease-in-out infinite;
-}
-
-.scene.active .path .timeline-point {
-    animation:timelineGlow 2.4s ease-in-out infinite;
-}
-
-.scene.active .path .timeline-point.right {
-    animation-delay:0.35s;
-}
-
-.scene.active .path .timeline-point.center {
-    animation-delay:0.18s;
 }
 
 .scene.active .path .timeline-date {
@@ -164,17 +136,6 @@ select {
     100% {
         opacity:0;
         transform:translateX(calc(100% + 900px));
-    }
-}
-
-@keyframes timelineGlow {
-    0%, 100% {
-        transform:scale(1);
-        box-shadow:0 0 10px white;
-    }
-    50% {
-        transform:scale(1.25);
-        box-shadow:0 0 22px rgba(255,255,255,0.95);
     }
 }
 
@@ -449,6 +410,18 @@ select {
     display:block;
     border-radius:inherit;
     box-shadow:none;
+}
+
+.modal.modal-chair-focus .modal-picture {
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    overflow:visible;
+}
+
+.modal.modal-chair-focus #modal-img {
+    width:82%;
+    margin-top:-48px;
 }
 
 .modal-picture {
@@ -1026,12 +999,6 @@ select {
         height: 22px;
     }
 
-    .path .timeline-point {
-        width: 10px;
-        height: 10px;
-        top: -4px;
-    }
-
     .path .timeline-date {
         top: 18px;
         font-size: 10px;
@@ -1179,6 +1146,11 @@ select {
         font-size: 16px;
     }
 
+    .modal.modal-chair-focus #modal-img {
+        width:76%;
+        margin-top:-34px;
+    }
+
     .close {
         top: max(16px, env(safe-area-inset-top));
         right: 18px;
@@ -1285,12 +1257,6 @@ select {
         top: -5px;
     }
 
-    .path .timeline-point {
-        width: 8px;
-        height: 8px;
-        top: -2px;
-    }
-
     .path .timeline-date {
         top: 12px;
         font-size: 9px;
@@ -1366,6 +1332,11 @@ select {
         font-size: 14px;
     }
 
+    .modal.modal-chair-focus #modal-img {
+        width:74%;
+        margin-top:-24px;
+    }
+
     #modal-model {
         min-height: 180px;
         height: min(48vh, 240px);
@@ -1391,11 +1362,6 @@ select {
 .scene.scene-thematic .path {
     background:linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
     opacity:0.7;
-}
-
-.scene.scene-thematic .timeline-point {
-    background:white;
-    box-shadow:0 0 10px white;
 }
 
 .scene.scene-thematic .timeline-date {
@@ -1477,6 +1443,40 @@ select {
     top: 51%;
 }
 
+.artifact-frame-chair {
+    --artifact-lift:-214px;
+    --artifact-lift-small:-214px;
+    --info-gap:98px;
+}
+
+.artifact-frame-chair::after {
+    display:none;
+}
+
+.artifact-frame-chair picture {
+    position:relative;
+    overflow:visible;
+}
+
+.artifact-frame-chair picture::after {
+    content:none;
+}
+
+.artifact-frame-chair img {
+    border-radius:6px;
+    border:1px solid rgba(229,213,182,0.44);
+}
+
+.scene-two-artifacts-compact .artifact.slot-left {
+    left: 24%;
+    top: 49%;
+}
+
+.scene-two-artifacts-compact .artifact.slot-right {
+    left: 56%;
+    top: 49%;
+}
+
 @media (max-width: 900px) {
     .scene-era {
         top: max(70px, env(safe-area-inset-top) + 42px);
@@ -1524,6 +1524,22 @@ select {
         top: 57%;
     }
 
+    .scene-two-artifacts-compact .artifact.slot-left {
+        left: 20%;
+        top: 55%;
+    }
+
+    .scene-two-artifacts-compact .artifact.slot-right {
+        left: 54%;
+        top: 55%;
+    }
+
+    .artifact-frame-chair {
+        --artifact-lift:-186px;
+        --artifact-lift-small:-186px;
+        --info-gap:90px;
+    }
+
     .scene-single-artifact .artifact,
     .scene-single-artifact .artifact.artifact-bust,
     .scene-single-artifact .artifact.artifact-statue {
@@ -1565,6 +1581,22 @@ select {
     .artifact.slot-right {
         left: 66%;
         top: 55%;
+    }
+
+    .scene-two-artifacts-compact .artifact.slot-left {
+        left: 18%;
+        top: 53%;
+    }
+
+    .scene-two-artifacts-compact .artifact.slot-right {
+        left: 54%;
+        top: 53%;
+    }
+
+    .artifact-frame-chair {
+        --artifact-lift:-166px;
+        --artifact-lift-small:-166px;
+        --info-gap:82px;
     }
 
     .scene-single-artifact .artifact,
@@ -1913,12 +1945,6 @@ select {
         bottom: 32px;
         left: 9%;
         width: 82%;
-    }
-
-    .path .timeline-point {
-        top: -5px;
-        width: 12px;
-        height: 12px;
     }
 
     .path .timeline-date {
