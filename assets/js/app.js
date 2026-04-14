@@ -13,7 +13,6 @@ const thematicHallConfigs = [
             "medaljapan",
             "30pobeda",
             "medali_70_let_vooruzhennyh_sil",
-            "medal_50_let_vooruzhennyh_sil",
             "medal_50_let_vooruzhennyh_sil_sssr",
             "medal_70_let_vooruzhennyh_sil",
             "medal_truzheniku_tyla",

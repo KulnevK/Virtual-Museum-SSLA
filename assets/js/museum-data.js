@@ -709,16 +709,6 @@ window.MUSEUM_DATA = {
             description: "Экспонат виртуального музея Саратовской государственной юридической академии. Развёрнутое описание и историческая справка будут добавлены по мере уточнения музейного учёта."
         },
         {
-            id: "medal_50_let_vooruzhennyh_sil",
-            sceneId: "scene-1930-09",
-            slot: "right",
-            label: "Медаль «50 лет Вооруженных сил»",
-            title: "Медаль «50 лет Вооруженных сил»",
-            image: "assets/img/exhibits/medal_50_let_vooruzhennyh_sil.png",
-            searchTerms: [],
-            description: "Экспонат виртуального музея Саратовской государственной юридической академии. Развёрнутое описание и историческая справка будут добавлены по мере уточнения музейного учёта."
-        },
-        {
             id: "medal_50_let_vooruzhennyh_sil_sssr",
             sceneId: "scene-1930-10",
             slot: "left",
@@ -780,8 +770,8 @@ window.MUSEUM_DATA = {
         },
         {
             id: "medal_stoletiyu_georgiya_zhukova",
-            sceneId: "scene-1930-12",
-            slot: "left",
+            sceneId: "scene-1930-09",
+            slot: "right",
             label: "Медаль столетию Георгия Жукова",
             title: "Медаль столетию Георгия Жукова",
             image: "assets/img/exhibits/medal_stoletiyu_georgiya_zhukova.png",

@@ -617,7 +617,7 @@ select {
     align-items:center;
     justify-content:space-between;
     gap:18px;
-    background:linear-gradient(180deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.75) 36%, rgba(15,23,42,0.9) 100%);
+    background:linear-gradient(180deg, rgba(10,22,56,0) 0%, rgba(12,32,82,0.76) 36%, rgba(10,30,74,0.92) 100%);
     backdrop-filter:blur(10px);
 }
 
