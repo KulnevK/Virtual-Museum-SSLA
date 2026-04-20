@@ -4,7 +4,19 @@ const rawMuseumData = window.MUSEUM_DATA || { scenes: [], exhibits: [] };
 const defaultSceneBackground = "assets/img/scenes/newhall1.jpg";
 const defaultDescription = "Описание будет добавлено позже.";
 const placeholderMuseumDescription = "Экспонат виртуального музея Саратовской государственной юридической академии. Развёрнутое описание и историческая справка будут добавлены по мере уточнения музейного учёта.";
-const forceImageOnlyExhibitIds = new Set(["flyaga", "pushka", "clock", "chasy1", "chasy2"]);
+const targetSceneExhibitCount = 3;
+const chairExceptionExhibitId = "stul_derevyannyy_s_rezboy_3d";
+const forceImageOnlyExhibitIds = new Set([
+    "flyaga",
+    "pushka",
+    "clock",
+    "chasy1",
+    "chasy2",
+    "kaska_3d",
+    "kaska_3d_2",
+    "statuetka",
+    "kruzhka"
+]);
 const thematicHallConfigs = [
     {
         key: "awards",
@@ -287,6 +299,48 @@ const thematicHallConfigs = [
         ]
     }
 ];
+const exhibitHallTitleById = thematicHallConfigs.reduce((map, config) => {
+    (config.exhibitIds || []).forEach(exhibitId => {
+        map.set(String(exhibitId || "").trim(), String(config.title || "").trim());
+    });
+    return map;
+}, new Map());
+const hallTitleOrder = new Map(thematicHallConfigs.map((config, index) => [String(config.title || "").trim(), index]));
+
+function resolveCatalogHallTitle(exhibit, scene) {
+    const byConfig = exhibitHallTitleById.get(String(exhibit?.id || "").trim());
+    if (byConfig) {
+        return byConfig;
+    }
+
+    const text = [
+        exhibit?.label,
+        exhibit?.title,
+        ...(Array.isArray(exhibit?.searchTerms) ? exhibit.searchTerms : [])
+    ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+    const keywordRules = [
+        { pattern: /(медал|орден|наград)/, hall: "Галерея орденов и медалей" },
+        { pattern: /(книг|журнал|сборник|кодекс)/, hall: "Книжное собрание музея" },
+        { pattern: /(пластин|кассет|аудио|винил)/, hall: "Зал аудиоархива" },
+        { pattern: /(удостовер|документ|диплом|аттестат|сертификат|грамот|зачетн)/, hall: "Архив удостоверений и документов" },
+        { pattern: /(картин|портрет|живопис)/, hall: "Галерея живописи и портретов" },
+        { pattern: /(сувенир|подар|значок|кубок|вымпел|открытк)/, hall: "Зал сувениров и подарков" },
+        { pattern: /(часы|аппарат|радио|магнитофон|калькулятор|проектор|техник|прибор)/, hall: "Зал техники и приборов" },
+        { pattern: /(каск|армей|военн|снаряд|противогаз|фляг|погон|папах|пилотк|сумк)/, hall: "Военно-мемориальный зал" },
+        { pattern: /(статуэт|бюст|скульптур|кувшин|кружк|шкатул|графин|стул)/, hall: "Зал скульптуры и декоративных предметов" }
+    ];
+
+    const matchedRule = keywordRules.find(rule => rule.pattern.test(text));
+    if (matchedRule) {
+        return matchedRule.hall;
+    }
+
+    return String(scene?.hallTitle || "Прочие экспонаты").trim() || "Прочие экспонаты";
+}
 
 function buildThematicPlan() {
     const baseScenes = Array.isArray(rawMuseumData?.scenes) ? rawMuseumData.scenes : [];
@@ -418,6 +472,257 @@ function resolveThumbCompanion(rasterPath) {
     const companion = path.replace(/(\.[^./\\]+)$/i, "_thumb$1");
 
     return companion !== path ? companion : "";
+}
+
+function rebalanceSceneExhibitDistribution(scenes, exhibits) {
+    if (!Array.isArray(scenes) || !Array.isArray(exhibits) || !scenes.length || !exhibits.length) {
+        return;
+    }
+
+    const sceneOrderMap = new Map(scenes.map((scene, index) => [scene.id, index]));
+    const sceneExhibitsMap = new Map(scenes.map(scene => [scene.id, []]));
+    const sceneTransitions = new Map(scenes.map(scene => [scene.id, new Set()]));
+    const slotLayoutByCount = {
+        1: ["center"],
+        2: ["left", "right"],
+        3: ["left", "center", "right"]
+    };
+    const chairSceneId = exhibits.find(exhibit => exhibit.id === chairExceptionExhibitId)?.sceneId || "";
+    const hallKeyBySceneId = new Map();
+    const sceneIdsByHallKey = new Map();
+    const sceneById = new Map(scenes.map(scene => [scene.id, scene]));
+
+    const getSceneHallKey = sceneId => {
+        const match = String(sceneId || "").match(/^scene-theme-([a-z0-9_-]+)-\d+$/i);
+        return match ? match[1] : "__chronology__";
+    };
+
+    scenes.forEach(scene => {
+        const hallKey = getSceneHallKey(scene.id);
+        hallKeyBySceneId.set(scene.id, hallKey);
+
+        if (!sceneIdsByHallKey.has(hallKey)) {
+            sceneIdsByHallKey.set(hallKey, []);
+        }
+
+        sceneIdsByHallKey.get(hallKey).push(scene.id);
+        scene.isTransition = false;
+        scene.transitionFromHalls = [];
+    });
+
+    exhibits
+        .slice()
+        .sort((a, b) => {
+            const sceneDiff = (sceneOrderMap.get(a.sceneId) ?? Number.MAX_SAFE_INTEGER) - (sceneOrderMap.get(b.sceneId) ?? Number.MAX_SAFE_INTEGER);
+            if (sceneDiff !== 0) {
+                return sceneDiff;
+            }
+
+            return (slotOrder[a.slot] ?? 99) - (slotOrder[b.slot] ?? 99);
+        })
+        .forEach(exhibit => {
+            const sceneExhibits = sceneExhibitsMap.get(exhibit.sceneId);
+            if (sceneExhibits) {
+                sceneExhibits.push(exhibit);
+            }
+        });
+
+    const getNonEmptyHallSceneCount = hallKey => {
+        const hallSceneIds = sceneIdsByHallKey.get(hallKey) || [];
+        return hallSceneIds.reduce((count, sceneId) => {
+            const hallSceneExhibits = sceneExhibitsMap.get(sceneId) || [];
+            return count + (hallSceneExhibits.length > 0 ? 1 : 0);
+        }, 0);
+    };
+
+    const pullFromDonorScene = (donorSceneId, options = {}) => {
+        const { preserveDonorHallVisibility = false } = options;
+        const donorExhibits = sceneExhibitsMap.get(donorSceneId) || [];
+        if (!donorExhibits.length) {
+            return null;
+        }
+
+        const donorHallKey = hallKeyBySceneId.get(donorSceneId) || "__chronology__";
+        if (preserveDonorHallVisibility && donorExhibits.length === 1 && getNonEmptyHallSceneCount(donorHallKey) <= 1) {
+            return null;
+        }
+
+        if (donorSceneId !== chairSceneId) {
+            return donorExhibits.shift() || null;
+        }
+
+        const movableIndex = donorExhibits.findIndex(exhibit => exhibit.id !== chairExceptionExhibitId);
+        if (movableIndex === -1) {
+            return null;
+        }
+
+        const [movedExhibit] = donorExhibits.splice(movableIndex, 1);
+        return movedExhibit || null;
+    };
+
+    scenes.forEach((scene, sceneIndex) => {
+        if (!scene?.id || scene.id === chairSceneId) {
+            return;
+        }
+
+        const sceneExhibits = sceneExhibitsMap.get(scene.id) || [];
+        const targetHallKey = hallKeyBySceneId.get(scene.id) || "__chronology__";
+
+        while (sceneExhibits.length < targetSceneExhibitCount) {
+            let movedExhibit = null;
+            let movedFromSceneId = "";
+
+            for (let donorIndex = sceneIndex + 1; donorIndex < scenes.length; donorIndex++) {
+                const donorScene = scenes[donorIndex];
+                if (!donorScene?.id || donorScene.id === chairSceneId) {
+                    continue;
+                }
+
+                const donorHallKey = hallKeyBySceneId.get(donorScene.id) || "__chronology__";
+                if (donorHallKey !== targetHallKey) {
+                    continue;
+                }
+
+                movedExhibit = pullFromDonorScene(donorScene.id);
+                if (movedExhibit) {
+                    movedFromSceneId = donorScene.id;
+                    break;
+                }
+            }
+
+            if (!movedExhibit) {
+                for (let donorIndex = sceneIndex + 1; donorIndex < scenes.length; donorIndex++) {
+                    const donorScene = scenes[donorIndex];
+                    if (!donorScene?.id || donorScene.id === chairSceneId) {
+                        continue;
+                    }
+
+                    const donorHallKey = hallKeyBySceneId.get(donorScene.id) || "__chronology__";
+                    if (donorHallKey === targetHallKey) {
+                        continue;
+                    }
+
+                    movedExhibit = pullFromDonorScene(donorScene.id, { preserveDonorHallVisibility: true });
+                    if (movedExhibit) {
+                        movedFromSceneId = donorScene.id;
+                        const donorHallTitle = String(sceneById.get(donorScene.id)?.hallTitle || "").trim();
+                        if (donorHallTitle) {
+                            sceneTransitions.get(scene.id)?.add(donorHallTitle);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            if (!movedExhibit && chairSceneId) {
+                movedExhibit = pullFromDonorScene(chairSceneId, { preserveDonorHallVisibility: true });
+                movedFromSceneId = movedExhibit ? chairSceneId : "";
+                if (movedExhibit) {
+                    const donorHallTitle = String(sceneById.get(chairSceneId)?.hallTitle || "").trim();
+                    if (donorHallTitle && donorHallTitle !== String(scene.hallTitle || "").trim()) {
+                        sceneTransitions.get(scene.id)?.add(donorHallTitle);
+                    }
+                }
+            }
+
+            if (!movedExhibit) {
+                break;
+            }
+
+            movedExhibit.sceneId = scene.id;
+            sceneExhibits.push(movedExhibit);
+
+            if (movedFromSceneId) {
+                const movedFromHallKey = hallKeyBySceneId.get(movedFromSceneId) || "__chronology__";
+                if (movedFromHallKey !== targetHallKey) {
+                    const donorHallTitle = String(sceneById.get(movedFromSceneId)?.hallTitle || "").trim();
+                    if (donorHallTitle) {
+                        sceneTransitions.get(scene.id)?.add(donorHallTitle);
+                    }
+                }
+            }
+        }
+    });
+
+    const findReceiverSceneId = (sourceSceneIndex, preferredHallKey) => {
+        for (let receiverIndex = sourceSceneIndex - 1; receiverIndex >= 0; receiverIndex--) {
+            const receiverScene = scenes[receiverIndex];
+            if (!receiverScene?.id || receiverScene.id === chairSceneId) {
+                continue;
+            }
+
+            const receiverExhibits = sceneExhibitsMap.get(receiverScene.id) || [];
+            const receiverHallKey = hallKeyBySceneId.get(receiverScene.id) || "__chronology__";
+            if (receiverExhibits.length < targetSceneExhibitCount && receiverHallKey === preferredHallKey) {
+                return receiverScene.id;
+            }
+        }
+
+        for (let receiverIndex = sourceSceneIndex - 1; receiverIndex >= 0; receiverIndex--) {
+            const receiverScene = scenes[receiverIndex];
+            if (!receiverScene?.id || receiverScene.id === chairSceneId) {
+                continue;
+            }
+
+            const receiverExhibits = sceneExhibitsMap.get(receiverScene.id) || [];
+            if (receiverExhibits.length < targetSceneExhibitCount) {
+                return receiverScene.id;
+            }
+        }
+
+        return "";
+    };
+
+    for (let sceneIndex = scenes.length - 1; sceneIndex >= 0; sceneIndex--) {
+        const scene = scenes[sceneIndex];
+        if (!scene?.id || scene.id === chairSceneId) {
+            continue;
+        }
+
+        const sourceExhibits = sceneExhibitsMap.get(scene.id) || [];
+        if (sourceExhibits.length >= targetSceneExhibitCount) {
+            continue;
+        }
+
+        while (sourceExhibits.length > 0) {
+            const sourceHallKey = hallKeyBySceneId.get(scene.id) || "__chronology__";
+            const receiverSceneId = findReceiverSceneId(sceneIndex, sourceHallKey);
+            if (!receiverSceneId) {
+                break;
+            }
+
+            const movedExhibit = sourceExhibits.shift();
+            if (!movedExhibit) {
+                break;
+            }
+
+            movedExhibit.sceneId = receiverSceneId;
+            const receiverExhibits = sceneExhibitsMap.get(receiverSceneId) || [];
+            receiverExhibits.push(movedExhibit);
+
+            const receiverHallKey = hallKeyBySceneId.get(receiverSceneId) || "__chronology__";
+            if (receiverHallKey !== sourceHallKey) {
+                const sourceHallTitle = String(sceneById.get(scene.id)?.hallTitle || "").trim();
+                if (sourceHallTitle) {
+                    sceneTransitions.get(receiverSceneId)?.add(sourceHallTitle);
+                }
+            }
+        }
+    }
+
+    scenes.forEach(scene => {
+        const sceneExhibits = sceneExhibitsMap.get(scene.id) || [];
+        const layout = slotLayoutByCount[Math.min(sceneExhibits.length, targetSceneExhibitCount)] || slotLayoutByCount[3];
+        const transitionFromHalls = [...(sceneTransitions.get(scene.id) || [])]
+            .filter(title => title && title !== String(scene.hallTitle || "").trim());
+
+        scene.isTransition = transitionFromHalls.length > 0;
+        scene.transitionFromHalls = transitionFromHalls;
+
+        sceneExhibits.forEach((exhibit, index) => {
+            exhibit.slot = layout[index] || "center";
+        });
+    });
 }
 
 function normalizeMuseumData(rawData) {
@@ -567,6 +872,8 @@ function normalizeMuseumData(rawData) {
 
         return result;
     }, []);
+
+    rebalanceSceneExhibitDistribution(scenes, exhibits);
 
     const usedSceneIds = new Set(exhibits.map(exhibit => exhibit.sceneId));
     const nonEmptyScenes = scenes.filter(scene => usedSceneIds.has(scene.id));
@@ -858,8 +1165,8 @@ function buildSearchText(exhibit) {
         .toLowerCase();
 }
 
-function getCatalogHallLabel(scene) {
-    return scene?.hallTitle || scene?.label || "Без зала";
+function getCatalogHallLabel(scene, exhibit) {
+    return resolveCatalogHallTitle(exhibit, scene);
 }
 
 function buildCatalogMeta(exhibit, scene) {
@@ -889,21 +1196,6 @@ function getCatalogGroups() {
     const groups = [];
     const groupsByLabel = new Map();
 
-    museumData.scenes.forEach(scene => {
-        const label = getCatalogHallLabel(scene);
-
-        if (!groupsByLabel.has(label)) {
-            const group = {
-                id: `catalog-hall-${groups.length + 1}`,
-                title: label,
-                exhibits: []
-            };
-
-            groupsByLabel.set(label, group);
-            groups.push(group);
-        }
-    });
-
     museumData.exhibits
         .slice()
         .sort((a, b) => {
@@ -921,7 +1213,7 @@ function getCatalogGroups() {
         })
         .forEach(exhibit => {
             const scene = getSceneById(exhibit.sceneId);
-            const label = getCatalogHallLabel(scene);
+            const label = getCatalogHallLabel(scene, exhibit);
             let group = groupsByLabel.get(label);
 
             if (!group) {
@@ -938,7 +1230,20 @@ function getCatalogGroups() {
             group.exhibits.push(exhibit);
         });
 
-    return groups.filter(group => group.exhibits.length > 0);
+    return groups
+        .filter(group => group.exhibits.length > 0)
+        .sort((a, b) => {
+            const aOrder = hallTitleOrder.get(a.title);
+            const bOrder = hallTitleOrder.get(b.title);
+            const aRank = Number.isInteger(aOrder) ? aOrder : Number.MAX_SAFE_INTEGER;
+            const bRank = Number.isInteger(bOrder) ? bOrder : Number.MAX_SAFE_INTEGER;
+
+            if (aRank !== bRank) {
+                return aRank - bRank;
+            }
+
+            return a.title.localeCompare(b.title, "ru");
+        });
 }
 
 function renderCatalog() {
@@ -1058,13 +1363,17 @@ function renderScene(scene, index) {
         .map((exhibit, exhibitIndex) => renderArtifactCard(exhibit, { slot: sceneDisplaySlots[exhibitIndex] }))
         .join("");
     const mobilePickerMarkup = renderMobileFocusPicker(scene, sceneExhibits);
+    const transitionMarkup = scene.isTransition
+        ? `<div class="scene-transition-label">${escapeHtml(scene.transitionFromHalls.join(", "))}</div>`
+        : "";
     const noteMarkup = !placementsMarkup && scene.note
         ? `<div class="scene-note">${escapeHtml(scene.note)}</div>`
         : "";
 
     return `
-        <section class="scene${scene.isThematic ? " scene-thematic" : ""}${!placementsMarkup ? " scene-empty" : ""}${sceneExhibits.length === 1 ? " scene-single-artifact" : ""}${isCompactPairLayout ? " scene-two-artifacts scene-two-artifacts-compact" : ""}" data-scene-id="${escapeHtml(scene.id)}" data-scene-index="${index}" style="background-image:url('${escapeHtml(scene.background)}')">
+        <section class="scene scene-thematic${!placementsMarkup ? " scene-empty" : ""}${sceneExhibits.length === 1 ? " scene-single-artifact" : ""}${isCompactPairLayout ? " scene-two-artifacts scene-two-artifacts-compact" : ""}${scene.isTransition ? " scene-transition" : ""}" data-scene-id="${escapeHtml(scene.id)}" data-scene-index="${index}" style="background-image:url('${escapeHtml(scene.background)}')">
             <div class="scene-era">${escapeHtml(scene.hallTitle || scene.label)}</div>
+            ${transitionMarkup}
             <div class="path">${renderTimeline(scene)}</div>
             ${placementsMarkup}
             ${mobilePickerMarkup}
