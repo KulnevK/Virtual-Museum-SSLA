@@ -8,7 +8,6 @@ const targetSceneExhibitCount = 3;
 const chairExceptionExhibitId = "stul_derevyannyy_s_rezboy_3d";
 const forceImageOnlyExhibitIds = new Set([
     "flyaga",
-    "pushka",
     "clock",
     "chasy1",
     "chasy2",
@@ -24,8 +23,10 @@ const thematicHallConfigs = [
         background: "assets/img/scenes/newhall3.jpg",
         timeline: ["Награды", "Подвиги", "Память"],
         exhibitIds: [
-            "medaljapan",
-            "30pobeda",
+            "ordenskaya_planka",
+            "ordenskaya_planka_2",
+            "orden_za_veru_volyu_i_otechestvo",
+            "ossnovanie_medali",
             "medali_70_let_vooruzhennyh_sil",
             "medal_50_let_vooruzhennyh_sil_sssr",
             "medal_70_let_vooruzhennyh_sil",
@@ -35,10 +36,6 @@ const thematicHallConfigs = [
             "medal_za_doblestnyy_trud_v_vov",
             "medal_stoletiyu_georgiya_zhukova",
             "medalsoc",
-            "medalveteran",
-            "medalgranitz",
-            "pobedavsoc",
-            "40pobeda",
             "medali_50_let_pobedy",
             "medali_60_let_vooruzhennyh_sil",
             "medal_50_let_pobedy",
@@ -47,14 +44,16 @@ const thematicHallConfigs = [
             "medal_za_dolgoletniy_dobrosovestnyy_trud",
             "medal_za_vozrozhdenie_kazachestva",
             "medal_za_doblestnyy_trud_v_oznamenovanie_100_letiya_so_dnya_rozhdeniya",
-            "orden_za_veru_volyu_i_otechestvo",
-            "ordenskaya_knizhka_chermenskiy_ivan",
-            "ordenskaya_planka",
-            "ordenskaya_planka_2",
-            "ossnovanie_medali",
             "medali_20_let_s_momenta_vyvoda_sovetskih_voysk_iz_afganistana_40_armiy",
             "medal_60_let_pobedy_vov",
-            "medal_zaschitniku_pridnestrovya"
+            "medal_zaschitniku_pridnestrovya",
+            "ordenskaya_knizhka_chermenskiy_ivan",
+            "medaljapan",
+            "30pobeda",
+            "medalveteran",
+            "medalgranitz",
+            "pobedavsoc",
+            "40pobeda"
         ]
     },
     {
@@ -83,36 +82,6 @@ const thematicHallConfigs = [
         ]
     },
     {
-        key: "records",
-        title: "Зал аудиоархива",
-        background: "assets/img/scenes/newhall2.jpg",
-        timeline: ["Пластинки", "Кассеты", "Аудио"],
-        exhibitIds: [
-            "plastinka",
-            "plastinka_2",
-            "plastinka_3",
-            "plastinka_4",
-            "plastinka_5",
-            "plastinka_6",
-            "plastinka_7",
-            "plastinka_8",
-            "plastinka_9",
-            "plastinka_10",
-            "plastinka_11",
-            "cdvinyl",
-            "kasseta",
-            "kasseta_2",
-            "kasseta_3",
-            "kasseta_4",
-            "kasseta_5",
-            "kasseta_6",
-            "kasseta_7",
-            "kasseta_osvobozhdenie_bitva_za_berlin",
-            "kasseta_den_nauki",
-            "kassety"
-        ]
-    },
-    {
         key: "documents",
         title: "Архив удостоверений и документов",
         background: "assets/img/scenes/newhall1.jpg",
@@ -129,9 +98,9 @@ const thematicHallConfigs = [
             "svidetelstvo",
             "albom",
             "diplom",
-            "attekstat_dotsenta",
+
             "attestat_dotsenta",
-            "attestat_dotsenta_2",
+
             "papka",
             "papka_s_dokumentami",
             "pochetnaya_gramota",
@@ -168,7 +137,7 @@ const thematicHallConfigs = [
         exhibitIds: [
             "gagarin",
             "pushka",
-            "znachok_pioneriya_gdr",
+                    "znachok_pioneriya_gdr",
             "nagrudnyy_znak_yunyy_pioner_beg",
             "blagodarstvennoe_pismo",
             "vympel",
@@ -198,7 +167,6 @@ const thematicHallConfigs = [
             "sobinov196",
             "znak_sgap",
             "kivin_2004",
-            "konstsud",
             "nabor_nastolnyh_nagrad_orenburzhe_3d",
             "sgpi",
             "petr1"
@@ -325,7 +293,6 @@ function resolveCatalogHallTitle(exhibit, scene) {
     const keywordRules = [
         { pattern: /(медал|орден|наград)/, hall: "Галерея орденов и медалей" },
         { pattern: /(книг|журнал|сборник|кодекс)/, hall: "Книжное собрание музея" },
-        { pattern: /(пластин|кассет|аудио|винил)/, hall: "Зал аудиоархива" },
         { pattern: /(удостовер|документ|диплом|аттестат|сертификат|грамот|зачетн)/, hall: "Архив удостоверений и документов" },
         { pattern: /(картин|портрет|живопис)/, hall: "Галерея живописи и портретов" },
         { pattern: /(сувенир|подар|значок|кубок|вымпел|открытк)/, hall: "Зал сувениров и подарков" },
@@ -375,12 +342,14 @@ function buildThematicPlan() {
                     sourceScene,
                     sourceSceneOrder,
                     slotOrderValue,
-                    exhibitOrder: exhibit.order ?? Number.MAX_SAFE_INTEGER
+                    exhibitOrder: exhibit.order ?? Number.MAX_SAFE_INTEGER,
+                    configOrderValue: (config.exhibitIds || []).indexOf(exhibit.id)
                 };
             })
             .filter(Boolean)
             .sort((a, b) => (
-                a.sourceSceneOrder - b.sourceSceneOrder
+                (config.key === "awards" ? a.configOrderValue - b.configOrderValue : 0)
+                || a.sourceSceneOrder - b.sourceSceneOrder
                 || a.slotOrderValue - b.slotOrderValue
                 || a.exhibitOrder - b.exhibitOrder
             ));
@@ -475,30 +444,23 @@ function resolveThumbCompanion(rasterPath) {
 }
 
 function rebalanceSceneExhibitDistribution(scenes, exhibits) {
-    if (!Array.isArray(scenes) || !Array.isArray(exhibits) || !scenes.length || !exhibits.length) {
-        return;
-    }
-
-    const sceneOrderMap = new Map(scenes.map((scene, index) => [scene.id, index]));
-    const sceneExhibitsMap = new Map(scenes.map(scene => [scene.id, []]));
-    const sceneTransitions = new Map(scenes.map(scene => [scene.id, new Set()]));
     const slotLayoutByCount = {
         1: ["center"],
         2: ["left", "right"],
         3: ["left", "center", "right"]
     };
-    const chairSceneId = exhibits.find(exhibit => exhibit.id === chairExceptionExhibitId)?.sceneId || "";
+    const sceneExhibitsMap = new Map();
+    const sceneOrderMap = new Map();
     const hallKeyBySceneId = new Map();
     const sceneIdsByHallKey = new Map();
-    const sceneById = new Map(scenes.map(scene => [scene.id, scene]));
+    const chairSceneId = exhibits.find(exhibit => exhibit.id === chairExceptionExhibitId)?.sceneId || "";
 
-    const getSceneHallKey = sceneId => {
-        const match = String(sceneId || "").match(/^scene-theme-([a-z0-9_-]+)-\d+$/i);
-        return match ? match[1] : "__chronology__";
-    };
+    scenes.forEach((scene, index) => {
+        sceneExhibitsMap.set(scene.id, []);
+        sceneOrderMap.set(scene.id, index);
 
-    scenes.forEach(scene => {
-        const hallKey = getSceneHallKey(scene.id);
+        const match = String(scene.id || "").match(/^scene-theme-([a-z0-9_-]+)-/i);
+        const hallKey = match ? match[1] : "__chronology__";
         hallKeyBySceneId.set(scene.id, hallKey);
 
         if (!sceneIdsByHallKey.has(hallKey)) {
@@ -570,7 +532,6 @@ function rebalanceSceneExhibitDistribution(scenes, exhibits) {
 
         while (sceneExhibits.length < targetSceneExhibitCount) {
             let movedExhibit = null;
-            let movedFromSceneId = "";
 
             for (let donorIndex = sceneIndex + 1; donorIndex < scenes.length; donorIndex++) {
                 const donorScene = scenes[donorIndex];
@@ -585,43 +546,14 @@ function rebalanceSceneExhibitDistribution(scenes, exhibits) {
 
                 movedExhibit = pullFromDonorScene(donorScene.id);
                 if (movedExhibit) {
-                    movedFromSceneId = donorScene.id;
                     break;
                 }
             }
 
-            if (!movedExhibit) {
-                for (let donorIndex = sceneIndex + 1; donorIndex < scenes.length; donorIndex++) {
-                    const donorScene = scenes[donorIndex];
-                    if (!donorScene?.id || donorScene.id === chairSceneId) {
-                        continue;
-                    }
-
-                    const donorHallKey = hallKeyBySceneId.get(donorScene.id) || "__chronology__";
-                    if (donorHallKey === targetHallKey) {
-                        continue;
-                    }
-
-                    movedExhibit = pullFromDonorScene(donorScene.id, { preserveDonorHallVisibility: true });
-                    if (movedExhibit) {
-                        movedFromSceneId = donorScene.id;
-                        const donorHallTitle = String(sceneById.get(donorScene.id)?.hallTitle || "").trim();
-                        if (donorHallTitle) {
-                            sceneTransitions.get(scene.id)?.add(donorHallTitle);
-                        }
-                        break;
-                    }
-                }
-            }
-
             if (!movedExhibit && chairSceneId) {
-                movedExhibit = pullFromDonorScene(chairSceneId, { preserveDonorHallVisibility: true });
-                movedFromSceneId = movedExhibit ? chairSceneId : "";
-                if (movedExhibit) {
-                    const donorHallTitle = String(sceneById.get(chairSceneId)?.hallTitle || "").trim();
-                    if (donorHallTitle && donorHallTitle !== String(scene.hallTitle || "").trim()) {
-                        sceneTransitions.get(scene.id)?.add(donorHallTitle);
-                    }
+                const chairHallKey = hallKeyBySceneId.get(chairSceneId) || "__chronology__";
+                if (chairHallKey === targetHallKey) {
+                    movedExhibit = pullFromDonorScene(chairSceneId, { preserveDonorHallVisibility: true });
                 }
             }
 
@@ -631,16 +563,6 @@ function rebalanceSceneExhibitDistribution(scenes, exhibits) {
 
             movedExhibit.sceneId = scene.id;
             sceneExhibits.push(movedExhibit);
-
-            if (movedFromSceneId) {
-                const movedFromHallKey = hallKeyBySceneId.get(movedFromSceneId) || "__chronology__";
-                if (movedFromHallKey !== targetHallKey) {
-                    const donorHallTitle = String(sceneById.get(movedFromSceneId)?.hallTitle || "").trim();
-                    if (donorHallTitle) {
-                        sceneTransitions.get(scene.id)?.add(donorHallTitle);
-                    }
-                }
-            }
         }
     });
 
@@ -654,18 +576,6 @@ function rebalanceSceneExhibitDistribution(scenes, exhibits) {
             const receiverExhibits = sceneExhibitsMap.get(receiverScene.id) || [];
             const receiverHallKey = hallKeyBySceneId.get(receiverScene.id) || "__chronology__";
             if (receiverExhibits.length < targetSceneExhibitCount && receiverHallKey === preferredHallKey) {
-                return receiverScene.id;
-            }
-        }
-
-        for (let receiverIndex = sourceSceneIndex - 1; receiverIndex >= 0; receiverIndex--) {
-            const receiverScene = scenes[receiverIndex];
-            if (!receiverScene?.id || receiverScene.id === chairSceneId) {
-                continue;
-            }
-
-            const receiverExhibits = sceneExhibitsMap.get(receiverScene.id) || [];
-            if (receiverExhibits.length < targetSceneExhibitCount) {
                 return receiverScene.id;
             }
         }
@@ -699,25 +609,14 @@ function rebalanceSceneExhibitDistribution(scenes, exhibits) {
             movedExhibit.sceneId = receiverSceneId;
             const receiverExhibits = sceneExhibitsMap.get(receiverSceneId) || [];
             receiverExhibits.push(movedExhibit);
-
-            const receiverHallKey = hallKeyBySceneId.get(receiverSceneId) || "__chronology__";
-            if (receiverHallKey !== sourceHallKey) {
-                const sourceHallTitle = String(sceneById.get(scene.id)?.hallTitle || "").trim();
-                if (sourceHallTitle) {
-                    sceneTransitions.get(receiverSceneId)?.add(sourceHallTitle);
-                }
-            }
         }
     }
 
     scenes.forEach(scene => {
         const sceneExhibits = sceneExhibitsMap.get(scene.id) || [];
         const layout = slotLayoutByCount[Math.min(sceneExhibits.length, targetSceneExhibitCount)] || slotLayoutByCount[3];
-        const transitionFromHalls = [...(sceneTransitions.get(scene.id) || [])]
-            .filter(title => title && title !== String(scene.hallTitle || "").trim());
-
-        scene.isTransition = transitionFromHalls.length > 0;
-        scene.transitionFromHalls = transitionFromHalls;
+        scene.isTransition = false;
+        scene.transitionFromHalls = [];
 
         sceneExhibits.forEach((exhibit, index) => {
             exhibit.slot = layout[index] || "center";
@@ -875,10 +774,13 @@ function normalizeMuseumData(rawData) {
 
     rebalanceSceneExhibitDistribution(scenes, exhibits);
 
-    const usedSceneIds = new Set(exhibits.map(exhibit => exhibit.sceneId));
-    const nonEmptyScenes = scenes.filter(scene => usedSceneIds.has(scene.id));
 
-    return { scenes: nonEmptyScenes, exhibits };
+    const usedSceneIds = new Set(exhibits.map(exhibit => exhibit.sceneId));
+    const visibleScenes = scenes.filter(scene => scene.isThematic && usedSceneIds.has(scene.id));
+    const visibleSceneIds = new Set(visibleScenes.map(scene => scene.id));
+    const visibleExhibits = exhibits.filter(exhibit => visibleSceneIds.has(exhibit.sceneId));
+
+    return { scenes: visibleScenes, exhibits: visibleExhibits };
 }
 
 const museumData = normalizeMuseumData(rawMuseumData);
@@ -1103,26 +1005,7 @@ function getThematicSceneMeta(scene) {
 }
 
 function shouldUseCompactPairLayout(scene, sceneExhibits) {
-    if (sceneExhibits.length !== 2) {
-        return false;
-    }
-
-    const meta = getThematicSceneMeta(scene);
-    if (!meta) {
-        return false;
-    }
-
-    const configuredNumbers = compactPairSceneIndexesByHall[meta.hallKey];
-    if (configuredNumbers?.has(meta.sceneNumber)) {
-        return true;
-    }
-
-    if (meta.hallKey === "paintings") {
-        const hallSceneTotal = thematicSceneCountByHall.get(meta.hallKey) || 0;
-        return hallSceneTotal > 0 && meta.sceneNumber === hallSceneTotal;
-    }
-
-    return false;
+    return sceneExhibits.length === 2;
 }
 
 function getInitialSceneExhibit(sceneId) {
@@ -1190,7 +1073,6 @@ function buildCatalogMeta(exhibit, scene) {
 
     return parts.join(" • ");
 }
-
 function getCatalogGroups() {
     const sceneOrder = new Map(museumData.scenes.map((scene, index) => [scene.id, index]));
     const groups = [];
@@ -1363,17 +1245,19 @@ function renderScene(scene, index) {
         .map((exhibit, exhibitIndex) => renderArtifactCard(exhibit, { slot: sceneDisplaySlots[exhibitIndex] }))
         .join("");
     const mobilePickerMarkup = renderMobileFocusPicker(scene, sceneExhibits);
-    const transitionMarkup = scene.isTransition
-        ? `<div class="scene-transition-label">${escapeHtml(scene.transitionFromHalls.join(", "))}</div>`
-        : "";
+    const sceneHeaderTitle = String(
+        scene.hallTitle
+        || (Array.isArray(scene.transitionFromHalls) ? scene.transitionFromHalls.join(", ") : "")
+        || scene.label
+        || ""
+    ).trim();
     const noteMarkup = !placementsMarkup && scene.note
         ? `<div class="scene-note">${escapeHtml(scene.note)}</div>`
         : "";
 
     return `
         <section class="scene scene-thematic${!placementsMarkup ? " scene-empty" : ""}${sceneExhibits.length === 1 ? " scene-single-artifact" : ""}${isCompactPairLayout ? " scene-two-artifacts scene-two-artifacts-compact" : ""}${scene.isTransition ? " scene-transition" : ""}" data-scene-id="${escapeHtml(scene.id)}" data-scene-index="${index}" style="background-image:url('${escapeHtml(scene.background)}')">
-            <div class="scene-era">${escapeHtml(scene.hallTitle || scene.label)}</div>
-            ${transitionMarkup}
+            <div class="scene-era">${escapeHtml(sceneHeaderTitle)}</div>
             <div class="path">${renderTimeline(scene)}</div>
             ${placementsMarkup}
             ${mobilePickerMarkup}
@@ -1831,3 +1715,19 @@ document.addEventListener("keydown", event => {
 });
 
 setupModalZoom();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
