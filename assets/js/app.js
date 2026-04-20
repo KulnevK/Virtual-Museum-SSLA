@@ -3,6 +3,8 @@ const slotOrder = { left: 0, center: 1, right: 2 };
 const rawMuseumData = window.MUSEUM_DATA || { scenes: [], exhibits: [] };
 const defaultSceneBackground = "assets/img/scenes/newhall1.jpg";
 const defaultDescription = "Описание будет добавлено позже.";
+const placeholderMuseumDescription = "Экспонат виртуального музея Саратовской государственной юридической академии. Развёрнутое описание и историческая справка будут добавлены по мере уточнения музейного учёта.";
+const forceImageOnlyExhibitIds = new Set(["flyaga", "pushka", "clock", "chasy1", "chasy2"]);
 const thematicHallConfigs = [
     {
         key: "awards",
@@ -530,7 +532,15 @@ function normalizeMuseumData(rawData) {
         }
 
         const model = String(exhibit.model || "").trim();
-        const has3D = Boolean(model);
+        const sourceDescription = String(exhibit.description || defaultDescription).trim() || defaultDescription;
+
+        if (sourceDescription === placeholderMuseumDescription) {
+            return result;
+        }
+
+        const forceImageOnly = forceImageOnlyExhibitIds.has(id);
+        const normalizedModel = forceImageOnly ? "" : model;
+        const has3D = Boolean(normalizedModel);
 
         result.push({
             ...exhibit,
@@ -545,14 +555,14 @@ function normalizeMuseumData(rawData) {
             imageThumb,
             imageThumbWebp,
             poster: String(exhibit.poster || "").trim(),
-            model,
+            model: normalizedModel,
             has3D,
             artifactClass: String(exhibit.artifactClass || "").trim(),
             imageClass: String(exhibit.imageClass || "").trim(),
             searchTerms: Array.isArray(exhibit.searchTerms)
                 ? exhibit.searchTerms.filter(Boolean).map(value => String(value))
                 : [],
-            description: String(exhibit.description || defaultDescription).trim() || defaultDescription
+            description: sourceDescription
         });
 
         return result;
