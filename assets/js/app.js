@@ -251,7 +251,6 @@ const thematicHallConfigs = [
             "portfel",
             "kuvshin",
             "bust",
-            "statue",
             "esenin",
             "statuetka",
             "shkatulk",
@@ -1209,7 +1208,6 @@ function renderArtifactCard(exhibit, options = {}) {
 
     return `
         <div class="${escapeHtml(artifactClasses.join(" "))}" data-type="${escapeHtml(exhibit.id)}" data-scene-id="${escapeHtml(exhibit.sceneId)}">
-            ${exhibit.has3D ? '<span class="artifact-3d-badge" aria-label="Доступен просмотр в 3D">3D</span>' : ""}
             <div class="info">${escapeHtml(exhibit.label || exhibit.title)}</div>
             ${pictureInner}
         </div>

@@ -937,7 +937,7 @@ window.MUSEUM_DATA = {
             label: "Статуэтка “Родина-мать зовет”",
             title: "Статуэтка “Родина-мать зовет”",
             image: "assets/img/exhibits/statue.png",
-            model: "assets/models/statue.glb",
+            // model: "assets/models/statue.glb",
             artifactClass: "artifact-statue",
             imageClass: "lift-small",
             searchTerms: ["скульптура", "родина-мать", "1975", "фронтовики"],
