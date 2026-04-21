@@ -53,7 +53,8 @@ const thematicHallConfigs = [
             "medalveteran",
             "medalgranitz",
             "pobedavsoc",
-            "40pobeda"
+            "40pobeda",
+            "frontovik59"
         ]
     },
     {
@@ -211,7 +212,6 @@ const thematicHallConfigs = [
         exhibitIds: [
             "flyaga",
             "shapkarmii",
-            "frontovik59",
             "50sui",
             "armeyskiy_meshok_3d",
             "armeyskiy_meshok_3d_2",
